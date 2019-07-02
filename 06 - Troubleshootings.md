@@ -1,18 +1,6 @@
-# Kubernetes Playbook
+# Part 1 : Shortcuts
 
-### Elevated privileges and Permissions
-
-    sudo -i
-
-Or
-    sudo su -
-
-
-
-
-### 1. Basics and shortcuts:
-
-Setup alias for Kubectl 
+### 1. Basics :
 
     alias k=kubectl
     
@@ -41,9 +29,18 @@ is equal to :
 
      k get deploy
 
+### 2. Security context 
+
+display the current-context
+
+    kubectl config current-context	
+
+set the default context to my-cluster-name
+
+    kubectl config use-context my-cluster-name          
 
 
-### 2. Add flags
+### 3. Add flags
 
 Display labels :
     --show-labels  

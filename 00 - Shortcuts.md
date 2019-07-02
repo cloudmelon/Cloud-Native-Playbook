@@ -1,18 +1,6 @@
-# Kubernetes Playbook
+# Part 1 : Shortcuts
 
-### Elevated privileges and Permissions
-
-    sudo -i
-
-Or
-    sudo su -
-
-
-
-
-### 1. Basics and shortcuts:
-
-Setup alias for Kubectl 
+### 1. Basics :
 
     alias k=kubectl
     
@@ -44,6 +32,9 @@ is equal to :
 
 
 ### 2. Add flags
+In all namespaces : 
+
+    --all-namespaces  
 
 Display labels :
     --show-labels  
@@ -53,5 +44,16 @@ Display more information :
    
 Output as yaml format :
     -o yaml
-    
-    
+
+
+Sort by name : 
+    --sort-by=.metadata.name
+
+Sort by capacity :
+   --sort-by=.spec.capacity.storage  
+
+### 3. Write spec to a file 
+
+Get pod spec to a folder / file location : 
+
+   kubectl get deploy kubedeploy -o yaml >> prep/test.yaml
