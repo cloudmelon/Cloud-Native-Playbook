@@ -1,14 +1,38 @@
 # Kubernetes Cheatsheet of cloudmelon
 
+### Permissions
+
+    sudo -i
+
 
 ### 1. Basics and shortcuts:
 
     alias k=kubectl
     
+Display nodes:
 
-Kubectl get nodes <===>  k get no
-kubectl get services <===> k get svc
-kubectl get deployments <===> k get deploy
+    Kubectl get nodes
+    
+is equal to :
+  
+    k get no
+    
+    
+Display services:
+
+     kubectl get services
+     
+is equal to :
+
+     k get svc
+     
+Display deployments :
+
+     kubectl get deployments 
+     
+is equal to :
+
+     k get deploy
 
 
 
