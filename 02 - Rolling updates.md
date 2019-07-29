@@ -4,13 +4,47 @@ Deploying an application :
 
      kubectl run kubedeploy --image=nginx
 
+
+Or using Yaml definition file :
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
+```
+
+Then using the following command : 
+     Kubectl apply -f filename.yaml
+
+
 Check status:
     
      kubectl rollout status deployments kubedeploy
 
 
+     kubectl deployment.apps/nginx-deployment set image deployment.v1.apps/nginx-deployment nginx=nginx:1.9.1 --record
 
-     kubectl set image deployment kubedeploy app=nginx:1.91 --record=true
+Or simply using : 
+
+     kubectl set image deployment kubedeploy nginx=nginx:1.91 --record=true
 
 Performing an roll back : 
 

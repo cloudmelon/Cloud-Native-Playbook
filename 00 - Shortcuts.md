@@ -57,3 +57,11 @@ Sort by capacity :
 Get pod spec to a folder / file location : 
 
    kubectl get deploy kubedeploy -o yaml >> prep/test.yaml
+
+
+
+### 4. Testing rolling updates
+
+Using the following bash scripts : 
+
+    while true; do curl http://<ip-address-of-the-service>; done
