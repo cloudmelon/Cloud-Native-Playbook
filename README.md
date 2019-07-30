@@ -3,8 +3,7 @@
 ### Elevated privileges and Permissions
 
     sudo -i
-
-Or
+    
     sudo su -
 
 
