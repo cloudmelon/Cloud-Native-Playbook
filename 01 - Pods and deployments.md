@@ -30,13 +30,17 @@ Or use the yaml definition :
       image: busybox
       command: ['sh', '-c', 'echo Salut K8S! && sleep 3600']
    
-    ```
+ ```
 
 Get namespace : 
 
     kubectl get pods -n melon-ms
 
 
+Check pod by namespaces : 
+
+    Kubectl describe pod melon-ms-pod -n melon-ms
+    
 
 ### Manage deployments
 
