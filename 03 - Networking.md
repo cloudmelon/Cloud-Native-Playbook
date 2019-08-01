@@ -44,3 +44,35 @@ Address 1: 100.64.0.10 kube-dns.kube-system.svc.cluster.local
 Name:      nginx
 Address 1: 100.67.79.160 nginx.default.svc.cluster.local
 ```
+
+
+
+### Network Policy 
+
+Deny all ingress
+
+```yaml
+  apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    name: default-deny
+  spec:
+    podSelector: {}
+    policyTypes:
+    - Ingress
+ ```
+ 
+ Allow all egress :
+ 
+ ```yaml
+  apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    name: allow-all
+  spec:
+    podSelector: {}
+    ingress:
+    - {}
+    policyTypes:
+    - Ingress
+ ```
