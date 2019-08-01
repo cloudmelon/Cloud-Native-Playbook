@@ -49,6 +49,10 @@ Address 1: 100.67.79.160 nginx.default.svc.cluster.local
 
 ### Network Policy 
 
+Check network policy :
+
+    kubevtl get netpol
+
 Deny all ingress
 
 ```yaml
