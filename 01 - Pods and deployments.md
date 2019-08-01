@@ -52,3 +52,12 @@ Scale a deployment using the following :
 
     kubectl scale deployment kubeserve --replicas=5
     
+    
+### Manage services
+
+Create a service using the following : 
+
+    kubectl expose deployment webfront-deploy --port=80 --target-port=80 --type=NodePort
+    
+    
+    
