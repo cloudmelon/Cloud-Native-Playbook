@@ -45,12 +45,15 @@ is equal to :
 ### 2. Add flags
 
 Display labels :
+
     --show-labels  
     
 Display more information :
+
     -o wide
    
 Output as yaml format :
+
     -o yaml
     
     
