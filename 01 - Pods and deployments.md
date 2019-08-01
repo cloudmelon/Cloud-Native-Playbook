@@ -40,7 +40,14 @@ Get namespace :
 Check pod by namespaces : 
 
     Kubectl describe pod melon-ms-pod -n melon-ms
+
+Run Busybox image : 
+
+    kubectl run busybox --rm -it --image=busybox /bin/sh
     
+Run nginx image : 
+
+    kubectl run nginx --image=nginx --dry-run -o yaml > pod-sample.yaml
 
 ### Manage deployments
 
@@ -52,7 +59,8 @@ Scale a deployment using the following :
 
     kubectl scale deployment kubeserve --replicas=5
     
-    
+
+
 ### Manage services
 
 Create a service using the following : 
