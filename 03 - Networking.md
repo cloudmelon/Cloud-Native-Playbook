@@ -53,6 +53,10 @@ Check network policy :
 
     kubevtl get netpol
 
+Check the content of the network policy :
+
+    kubectl describe netpol netpolicyname
+
 Deny all ingress
 
 ```yaml
