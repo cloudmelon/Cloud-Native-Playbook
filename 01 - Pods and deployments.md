@@ -44,6 +44,10 @@ Check pod by namespaces :
 
 ### Manage deployments
 
+Create a deployment using the following : 
+
+    kubectl create deployment kubeserve --image=nginx:1.7.8
+
 Scale a deployment using the following : 
 
     kubectl scale deployment kubeserve --replicas=5
