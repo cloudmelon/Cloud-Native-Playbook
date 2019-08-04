@@ -32,6 +32,7 @@ State persistence means keeping some data or information to continue to beyond t
 
 
 **PV ( Persistent Volume )** represents a storage resouces ( like node is represent the compute resource such as CPU power and memory usage )
+
 **PVC ( Persistent Volume Claim )** is the abstraction layer between the user of the resource ( Pod ) and the PV itself. 
 
 PVCs will automatically bind themselves to a PV that has compatible StorageClass and accessMode. 
@@ -55,6 +56,9 @@ Create it through the yaml definition :
         storage: 256Mi
    
  ```
+ 
+ 
+ ### 3. Create PVC :
  
  ```yaml
   kind: PersistentVolumeClaim
