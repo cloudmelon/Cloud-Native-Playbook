@@ -26,9 +26,33 @@ Here I set up EmptyDir volumes create storage on a node when the pod is assigned
  ```
  
  
-Kubernetes is designed to maintain stateless containers. That means we can freely delete and replace containers without worrying about them containing important information that we don't want to lose. 
+Kubernetes is designed to maintain stateless containers. That means we can freely delete and replace containers without worrying about them containing important information that we don't want to lose. To store any information that we want to keep inside the container itself. We have to store it somewhere outside the container, and that's what makes the container stateless. 
+
+State persistence means keeping some data or information to continue to beyond the life of the container when the container is deleted or replaced. However it can be modified or updated by the containers while it's running.  One of the most sophisticated ways that Kubernetes allows us to implement persistent storage is through the use of persistent volumes and persistent volume claims. It represent storage resources that can be dynamically allocated as requested within the cluster. 
+
+
+PV ( Persistent Volume ) represents a storage resouces ( like node is represent the compute resource such as CPU power and memory usage )
+PVC ( Persistent Volume Claim ) is the abstraction layer between the user of the resource ( Pod ) and the PV itself. 
+
+PVCs will automatically bind themselves to a PV that has compatible StorageClass and accessMode. 
 
 
 ### 2. Create PV :
 
+Create it through the yaml definition : 
+
+```yaml
+  apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    name: data-pvc
+  spec:
+    storageClassName: local-storage
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 256Mi
+   
+ ```
   
