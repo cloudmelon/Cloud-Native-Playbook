@@ -4,7 +4,7 @@ Talking about Volume, in general, the storage that's internal to your containers
 
 ### 1. Create Volumes :
 
-Here I set up EmptyDir volumes create storage on a node when the pod is assigned to the node. The storage disappears when the pod leaves the node. It is also possible to create multiple containers and mount that storage to the containers and let them share the same volume so that they can interact with each other by interacting that same shared file system. 
+Here I set up **EmptyDir** volumes create storage on a node when the pod is assigned to the node. The storage disappears when the pod leaves the node. It is also possible to create multiple containers and mount that storage to the containers and let them share the same volume so that they can interact with each other by interacting that same shared file system. 
 
 ```yaml
   apiVersion: v1
@@ -31,8 +31,8 @@ Kubernetes is designed to maintain stateless containers. That means we can freel
 State persistence means keeping some data or information to continue to beyond the life of the container when the container is deleted or replaced. However it can be modified or updated by the containers while it's running.  One of the most sophisticated ways that Kubernetes allows us to implement persistent storage is through the use of persistent volumes and persistent volume claims. It represent storage resources that can be dynamically allocated as requested within the cluster. 
 
 
-PV ( Persistent Volume ) represents a storage resouces ( like node is represent the compute resource such as CPU power and memory usage )
-PVC ( Persistent Volume Claim ) is the abstraction layer between the user of the resource ( Pod ) and the PV itself. 
+**PV ( Persistent Volume )** represents a storage resouces ( like node is represent the compute resource such as CPU power and memory usage )
+**PVC ( Persistent Volume Claim )** is the abstraction layer between the user of the resource ( Pod ) and the PV itself. 
 
 PVCs will automatically bind themselves to a PV that has compatible StorageClass and accessMode. 
 
@@ -55,4 +55,17 @@ Create it through the yaml definition :
         storage: 256Mi
    
  ```
-  
+ 
+ ```yaml
+  kind: PersistentVolumeClaim
+  apiVersion: v1
+  metadata:
+    name: data-pod
+    namespace: web
+  spec:
+    accessModes:
+        - ReadWriteOnce
+    resources:
+      requests:
+         storage: 256Mi
+ ```
