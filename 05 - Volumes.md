@@ -97,23 +97,23 @@ You may notice that the status of this PVC is **Bound** which means it is alread
 If you're going to create a pod to comsume the target PV, you'll do as the following : 
 
  ```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: data-pod
-spec:
-  containers:
-    - name: busybox
-      image: busybox
-      command: ["/bin/sh", "-c","while true; do sleep 3600; done"]
-      volumeMounts:
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    name: data-pod
+  spec:
+    containers:
+      - name: busybox
+        image: busybox
+        command: ["/bin/sh", "-c","while true; do sleep 3600; done"]
+        volumeMounts:
+        - name: temp-data
+          mountPath: /tmp/data
+    volumes:
       - name: temp-data
-        mountPath: /tmp/data
-  volumes:
-    - name: temp-data
-      persistentVolumeClaim:
-        claimName: data-pvc
-  restartPolicy: Always
+        persistentVolumeClaim:
+          claimName: data-pvc
+    restartPolicy: Always
  ```
  
  Check back using Kubectl get pods, you'll see you pod is up and runnnig.
