@@ -12,6 +12,7 @@ This repostitory recap all useful kubectl commands and explainations for core co
 - [07 - ConfigMap](https://github.com/cloudmelon/melonkube/blob/master/07%20-%20ConfigMap.md)
 - [08 - Services](https://github.com/cloudmelon/melonkube/blob/master/08%20-%20Services.md)
 
+By cloudmelon
 
 ## More details on my blog : 
 
