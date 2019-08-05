@@ -55,13 +55,15 @@ Sort by name :
 
 Sort by capacity :
 
-   --sort-by=.spec.capacity.storage  
+    --sort-by=.spec.capacity.storage  
+   
+   
 
 ### 3. Write spec to a file 
 
 Get pod spec to a folder / file location : 
 
-   kubectl get deploy kubedeploy -o yaml >> prep/test.yaml
+    kubectl get deploy kubedeploy -o yaml >> prep/test.yaml
 
 
 
