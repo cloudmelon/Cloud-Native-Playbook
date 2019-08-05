@@ -59,7 +59,7 @@ The implementation of this actual storage is by **HostPath** which is simply goi
  
 Use kubectl get pv you'll get output as following :
 
-
+<img src="screenshots/Get PV.PNG" alt="solution diagram" width="800px"/>
 
 Notice here the status is **Available** that means it is currently not bound to a persistent volume claim. It's waiting to be accessed by claim. 
 
@@ -85,9 +85,11 @@ Notice here the status is **Available** that means it is currently not bound to 
 
 Use kubectl get pv you'll get output as following :
 
+<img src="screenshots/Get PVC.PNG" alt="solution diagram" width="800px"/>
 
 You may notice that the status of this PVC is **Bound** which means it is already bound to the persistent volume. So here if you check back the PVs as well, you'll actually see the status of PV is **Bound** as well ( as the following ). 
 
+<img src="screenshots/Check back get pv.PNG" alt="solution diagram" width="800px"/>
 
 
 ### 3. Create Pod :
