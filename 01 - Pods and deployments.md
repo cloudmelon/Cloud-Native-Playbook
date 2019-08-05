@@ -1,4 +1,4 @@
-# Part 1 : Shortcuts
+# Playbook Part 1 : Pods and deployments
 
 ### 1. Pods :
 

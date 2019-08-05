@@ -1,4 +1,4 @@
-# Playbook : Deploying an Application, Rolling Updates, and Rollbacks
+# Playbook Part 2: Deploying an Application, Rolling Updates, and Rollbacks
 
 Deploying an application : 
 

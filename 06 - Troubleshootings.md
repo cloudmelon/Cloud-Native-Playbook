@@ -1,4 +1,4 @@
-# Part 1 : Shortcuts
+# Playbook Part 6: Debug and troubleshootings
 
 ### 1. Basics :
 

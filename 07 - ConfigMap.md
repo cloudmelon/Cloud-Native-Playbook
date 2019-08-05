@@ -1,4 +1,4 @@
-### 1. Basics :
+# Playbook Part 7: ConfigMap
 
 Kubectl get configmap
 

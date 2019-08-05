@@ -1,4 +1,4 @@
-# Part 1 : Shortcuts
+# Playbook Part 0 : Shortcuts
 
 ### 1. Basics :
 
@@ -37,19 +37,24 @@ In all namespaces :
     --all-namespaces  
 
 Display labels :
+
     --show-labels  
     
 Display more information :
+
     -o wide
    
 Output as yaml format :
+
     -o yaml
 
 
 Sort by name : 
+
     --sort-by=.metadata.name
 
 Sort by capacity :
+
    --sort-by=.spec.capacity.storage  
 
 ### 3. Write spec to a file 

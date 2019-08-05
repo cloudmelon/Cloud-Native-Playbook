@@ -1,4 +1,4 @@
-# Part 8: Services
+# Playbook Part 8: Services
 
 Services in Kubernetes provides an abstraction layer which allow network access to a dynamic set of pods. Services use a selector and anything that tries to access the service with network traffic, that traffic is going to be proxy to one of the pods that is selected through that selector. 
 
