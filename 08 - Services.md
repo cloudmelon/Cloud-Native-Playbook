@@ -8,10 +8,11 @@ Services in Kubernetes provides an abstraction layer which allow network access 
 
 - **NodePort** - Exposing the Service on each Node’s IP at a static port which is the NodePort, which also means it isexposed outside the cluster by accessing that port ( by requesting <NodeIP>:<NodePort>). What it does is it actually selects an open port on all the nodes and listens on that port on each one of the node. 
 
-- **LoadBalancer** - Exposes the Service externally using a cloud provider’s load balancer. NodePort and ClusterIP Services, to which the external load balancer routes, are automatically created.
+- **LoadBalancer** - Exposing the Service externally using a cloud provider’s load balancer. It works only when you're actually running within a cloud platform or you're set up to interact with a cloud platform. 
 
-- **ExternalName** - Maps the Service to the contents of the externalName field (e.g. foo.bar.example.com), by returning a CNAME record with its value. No proxying of any kind is set up.
+- **ExternalName** - Mapping the Service to an external address (e.g. foo.bar.example.com by returning a CNAME record with its value ). It is used to allow the resources within the cluster to access things outside the cluster throught a service.
 
+### Creating a serice
 
 Create a service using yaml definition :
 
@@ -31,9 +32,25 @@ Create a service using yaml definition :
 
  ```
 
-In this definition, the port 80 is where the pod actually listening. 
+In this specification, the port 8080 is the service going to listen on, it doesn't necessarily to the same port that the containers in the pods are listening on.  Here the port 80 is where the pod actually listening. 
 
 
 Create a service using the following : 
 
     kubectl expose deployment webfront-deploy --port=80 --target-port=80 --type=NodePort
+
+
+### Check services and endpoints
+
+Using the following command to check the service available :
+
+    kubectl get svc
+
+
+Using the following command to check the endpoint of the service : 
+
+    kubectl get endpoints melon-service
+
+It can also be like the following : 
+
+    kubectl get ep
