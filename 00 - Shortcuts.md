@@ -2,8 +2,15 @@
 
 ### 1. Basics :
 
+Set up alias : 
+
     alias k=kubectl
     
+Set up auto-completion : 
+
+    echo "source <(kubectl completion bash)" >> ~/.bashrc
+
+
 Display nodes:
 
     Kubectl get nodes
