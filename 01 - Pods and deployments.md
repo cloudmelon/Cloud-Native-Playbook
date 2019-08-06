@@ -117,7 +117,86 @@ Scale a deployment using the following :
     
 
 
+## Play 4 : Jobs and CronJobs
 
+Jobs can be used to reliably execute a workload until it completes. The job will create one or more pods. When the job is finished, the containers will exit and the pods will enter the **Completed** status. The example of using jobs is when we want to run a particular workload and just to make sure it runs once and succeeds.
+
+You can create a job through Yaml descriptor : 
+
+ ```yaml
+   apiVersion: batch/v1
+   kind: Job
+   metadata:
+    name: melon-job
+   spec:
+    template:
+      spec:
+        containers:
+        - name: melonapp-job
+          image: perl
+          command: ["perl", "-Mbignum=bpi", "-wle","print bpi(2000)"]
+        restartPolicy: Never
+    backoffLimit: 4
+ ```
     
+If it is failed until 4 times, it is not gonna to continue. All the job really does is it creates a pod behind the scenes, but instead of a normal pod that's constantly running, it's a pod that runs and when it's complete it goes into the completed status. Which means the container is no longer running, so the pod still exists, but the container is completed. 
     
-    
+You can run the following command to check the job status: 
+
+     kubectl get job
+
+When the job is still running you can see the status as the following
+
+<img src="screenshots/Job running.PNG" alt="job running" width="800px"/>
+
+When the job is finished you can see the job has been completed.
+
+<img src="screenshots/Job completed.PNG" alt="job completed" width="800px"/>
+
+
+CronJobs build upon the functionality of job by allowing you to execute jobs on a schedule ( based on a cron expression ). 
+
+ ```yaml
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: hello
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hello
+            image: busybox
+            args:
+            - /bin/sh
+            - -c
+            - date; echo Hello from the Kubernetes cluster
+          restartPolicy: OnFailure
+ ```
+
+ You can use the following command to check the cron job: 
+
+     kubectl get cronjob
+
+You'll have a output like the following :
+
+ <img src="screenshots/Cron Job completed.PNG" alt="job completed" width="800px"/>
+
+ You can also use the command to check the log of job ( basically the same with pod ), by firstly checking the pods status: 
+
+     kubectl get pods | grep hello
+
+You'll have a output like the following :
+
+ <img src="screenshots/Grep.PNG" alt="job completed" width="800px"/>
+
+Then :
+
+   kubectl logs hello-xxxx
+
+You'll see you can virtualise the cron job has been executed :
+
+ <img src="screenshots/Cronlog.PNG" alt="job completed" width="800px"/>

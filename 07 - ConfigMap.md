@@ -1,6 +1,6 @@
 # Playbook Part 7: ConfigMap
 
-A configMap is simple a Kubernetes Object that stores configuration data in a key-value format. This configuration data can then be used to configure software running in a container, by referencing the ConfigMap in the Pod spec. 
+A **configMap** is simple a Kubernetes Object that stores configuration data in a key-value format. This configuration data can then be used to configure software running in a container, by referencing the ConfigMap in the Pod spec. 
 
 To check the configmap by using the following command :
 
