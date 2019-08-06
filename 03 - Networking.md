@@ -19,6 +19,7 @@ Check network policy :
     kubectl get netpol
 
 Or
+
     kubectl get networkpolicies
 
 Check the content of the network policy :
