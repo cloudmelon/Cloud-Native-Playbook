@@ -6,6 +6,8 @@ To check the configmap by using the following command :
 
       kubectl get configmap
 
+You can also use Yaml descriptor to define configmap : 
+
 ```yaml
   apiVersion: v1
   kind: ConfigMap
@@ -20,6 +22,7 @@ To check the configmap by using the following command :
 
  ## Play 1 : Mount as environment variable
 
+Create a pod to use configmap data by using environment variables. 
 
 ```yaml
 apiVersion: v1
@@ -48,6 +51,8 @@ The output is similar like the following :
 <img src="screenshots/ConfigMap output env.PNG" alt="solution diagram" width="800px"/>
 
  ## Play 2 : Using mounted volume
+
+ Create a pod to use configmap data by mounting a data volume.
 
 ```yaml
 apiVersion: v1
