@@ -1,6 +1,103 @@
 # Playbook Part 3 : Networking
 
-### 1. Kube-DNS :
+### Play 1 : Network Policy 
+
+By default : all pods in the cluster can communicate with any other pod, and reach out to any available IP. Here the interest of using network policy is to allow user to restrict what's allowed to talk to your pods and what your pods are allowed to talk to in your cluster.
+
+Network policies work based on a whitelist model, which means as soon as network policy select a pod using the pod selector. That pod is completely locked down, and cannot talk to anything until we provide some rule that will white list specific traffic in and out of the pod. 
+
+Definition :
+
+- **ingress** defines rules for incoming traffic. 
+- **egress** defines rules for outgoing traffic. 
+- **rules** both ingress and egress rules are whitelist-based, meaning that any traffic that does not match at least one rule will be blocked. 
+- **port** specifies the protocols and ports that match the rule. 
+- **from/to** selectors specifies the sources and destinations of network traffic that matches the rule
+
+Check network policy :
+
+    kubectl get netpol
+
+Or
+    kubectl get networkpolicies
+
+Check the content of the network policy :
+
+    kubectl describe netpol netpolicyname
+
+Define a network policy : 
+
+```yaml
+  apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    name: melon-network-policy
+  spec:
+    podSelector: 
+      matchLabels:
+        app: secure-app
+    policyTypes:
+    - Ingress
+    - Egress
+    ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            allow-access: "true"
+      ports: 
+      - protocol : TCP
+        port : 80
+      egress: 
+      - to: 
+        - podSelector:
+            matchLabels:
+              allow-access: "true"
+        ports:
+        - protocol: TCP
+          port: 80
+ ```
+
+For some default policy : 
+
+Deny all ingress
+
+```yaml
+  apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    name: default-deny
+  spec:
+    podSelector: {}
+    policyTypes:
+    - Ingress
+ ```
+ 
+ Allow all ingress :
+ 
+ ```yaml
+  apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    name: allow-all
+  spec:
+    podSelector: {}
+    policyTypes:
+    - Ingress
+    ingress:
+    - {}
+ 
+ ```
+
+ ## About Selectors 
+
+There are multiple types of selectors:
+
+- **podSelector** matches traffic from/to pods which match the selector
+- **namespaceSelector** matches traffic from/to pods within namespaces which match the selector.  Note that when podSelector and namespaceSelector are both present, the matching pods must also be within a matching namespace.
+- **ipBlock** specifies a CIDR range of IPs that will match the rule. This is mostly used for traffic from/to outside the cluster. You can also specify exceptions to the reange using except. 
+
+
+### Play 2 : Kube-DNS :
 
 Kube-dns is a (kube-system) pod containing three container instances: kubedns, dnsmasq, and sidecar. This service is instrumental for kubernetes to function. Cluster-info shows the primary dns endpoint.
 ```
@@ -47,40 +144,4 @@ Address 1: 100.67.79.160 nginx.default.svc.cluster.local
 
 
 
-### Network Policy 
 
-Check network policy :
-
-    kubevtl get netpol
-
-Check the content of the network policy :
-
-    kubectl describe netpol netpolicyname
-
-Deny all ingress
-
-```yaml
-  apiVersion: networking.k8s.io/v1
-  kind: NetworkPolicy
-  metadata:
-    name: default-deny
-  spec:
-    podSelector: {}
-    policyTypes:
-    - Ingress
- ```
- 
- Allow all egress :
- 
- ```yaml
-  apiVersion: networking.k8s.io/v1
-  kind: NetworkPolicy
-  metadata:
-    name: allow-all
-  spec:
-    podSelector: {}
-    ingress:
-    - {}
-    policyTypes:
-    - Ingress
- ```
