@@ -6,7 +6,7 @@ Services in Kubernetes provides an abstraction layer which allow network access 
 
 - **Cluster IP** - Creating a service that is designed to accessed by other pods within the cluster by using ClusterIP. This is the default ServiceType, it is also accessible using the cluter DNS.
 
-- **NodePort** - Exposing the Service on each Node’s IP at a static port which is the NodePort, which also means it isexposed outside the cluster by accessing that port ( by requesting <NodeIP>:<NodePort>). What it does is it actually selects an open port on all the nodes and listens on that port on each one of the node. 
+- **NodePort** - Exposing the Service on each Node’s IP at a static port which is the NodePort, which also means it isexposed outside the cluster by accessing that port ( by requesting NodeIP:NodePort). What it does is it actually selects an open port on all the nodes and listens on that port on each one of the node. 
 
 - **LoadBalancer** - Exposing the Service externally using a cloud provider’s load balancer. It works only when you're actually running within a cloud platform or you're set up to interact with a cloud platform. 
 

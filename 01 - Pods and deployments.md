@@ -1,12 +1,12 @@
 # Playbook Part 1 : Pods and deployments
 
-### Play 1 : Pod Design - Multi-container Pods
+## Play 1 : Pod Design - Multi-container Pods
 
-## Basics
+### Basics
 
 Multi-container pods are simply pods with more than one container that are working together and sort of forming a single unit. It is often a good idea to keep containers separate by keeping them in their own separate pods, but there are several cases where multi-container pods can be beneficial. 
 
-## How your container interact with one another
+### How your container interact with one another
 
 A container can interact with one another in three ways :
 - Share **Network**. It is like two containers were running on the same host, they can access each other simply using localhost. All listening ports are accessible to other containers in the pod even if they're not exposed outside the pod. 
@@ -21,12 +21,12 @@ A container can interact with one another in three ways :
 
 <img src="screenshots/Multi-container process namespace.PNG" alt="multi-container-sharedstorage" width="800px"/>
 
-## Multi-container pod design pattern
+### Multi-container pod design pattern
 
 Three multi-container pod design pattern :
-- **sidecar** Pattern uses a sidecar container that enhances the functionality of the main container. Example: A sidecar container that sinks files from a git repository to the file system of a web server container. Every two minutes checks for new version of these files. If the files have been updated, it pulls in the new files and pushes them into the file system of the main container, so they're automatically updated without even having to restart or redeploy that container.
+- **sidecar** pattern uses a sidecar container that enhances the functionality of the main container. Example: A sidecar container that sinks files from a git repository to the file system of a web server container. Every two minutes checks for new version of these files. If the files have been updated, it pulls in the new files and pushes them into the file system of the main container, so they're automatically updated without even having to restart or redeploy that container.
 
-- **ambassador**
+- **ambassador** pattern is all about capturing and translating networking traffics. 
 - **adaptor**
 
 
@@ -55,7 +55,7 @@ After creating the pod, you can use kubectl command to check the status of pod t
 <img src="screenshots/multi-container.PNG" alt="multi-container" width="800px"/>
 
 
-### Play 2 : Manage namespaces
+## Play 2 : Manage namespaces
 
 Get all namespaces using the following : 
 
@@ -96,7 +96,7 @@ Check pod by namespaces :
 
 
 
-### Play 3 : Manage deployments
+## Play 3 : Manage deployments
 
 Run Busybox image : 
 
