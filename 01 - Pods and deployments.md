@@ -200,3 +200,26 @@ Then :
 You'll see you can virtualise the cron job has been executed :
 
  <img src="screenshots/Cronlog.PNG" alt="job completed" width="800px"/>
+
+
+
+
+ ## Play 5 : Labels, Selectors, and Annotations
+
+ **Labels** are key-value pairs attached to Kubernetes objects, we can list them in metadata.labels section of an object descriptor. 
+
+**Selectors** are used for identifying and selecting a group of objects using their labels. 
+
+Examples of **quality-based** selectors: 
+
+      kubectl get pods -l app=my-app
+
+      kubectl get pods -l environment=production
+
+Example of **inequality** :
+
+      kubectl get pods -l environment!=production
+
+Example of **set-based** selectors
+
+      kubectl get pods -l 'environment in (production,development)'
