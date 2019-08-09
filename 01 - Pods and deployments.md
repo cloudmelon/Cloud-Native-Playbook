@@ -99,7 +99,39 @@ Check pod by namespaces :
 
 ## Play 3 : Manage deployments
 
-**Deployments** 
+**Deployments** provide a way to define a desired state for the replica pod.
+
+You can use the yaml defined template to define a deloyment : 
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: melon-deploy
+  labels:
+    app: melonapp
+spec:
+  replicas : 3
+  selector:
+    matchLabels:
+      app: melonapp
+  template:
+    metadata:
+      labels:
+        app: melonapp
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+
+ ```
+
+ Above yaml manifest means :
+
+ - **spec.replicas** is the number of replica pods
+ - **spec.template** is the template pod descriptor which defines the pods which will be created
+ - **spec.selector** is the deployment will manage all pods whose labels match this selector
 
 Run Busybox image : 
 
@@ -117,6 +149,19 @@ Scale a deployment using the following :
 
     kubectl scale deployment kubeserve --replicas=5
     
+
+Other useful command about query, edit, and delete deployment :
+    
+    kubectl get deployments
+
+    kubectl get deployment melon-deploy
+
+    kubectl describe deployment melon-deploy
+
+    kubectl edit deployment melon-deploy
+
+    kubectl delete deployment melon-deploy
+
 
 
 ## Play 4 : Jobs and CronJobs
