@@ -99,6 +99,8 @@ Check pod by namespaces :
 
 ## Play 3 : Manage deployments
 
+**Deployments** 
+
 Run Busybox image : 
 
     kubectl run busybox --rm -it --image=busybox /bin/sh
@@ -223,3 +225,10 @@ Example of **inequality** :
 Example of **set-based** selectors
 
       kubectl get pods -l 'environment in (production,development)'
+
+Example of chaining multiple selectors together using a **comma-delimited** list : 
+
+      kubectl get pods -l app=myapp.environment=production 
+
+**Annotation** are similar to labels in that they can be used to store custom metatdata about objects. However, **cannot** be used to select or group objects in Kubernetes.  We can attach annotations to objects using the metadata.annotations sector or the object descriptor
+
