@@ -277,3 +277,30 @@ Example of chaining multiple selectors together using a **comma-delimited** list
 
 **Annotation** are similar to labels in that they can be used to store custom metatdata about objects. However, **cannot** be used to select or group objects in Kubernetes.  We can attach annotations to objects using the metadata.annotations sector or the object descriptor
 
+ ## Play 6 : Resource requirements
+
+ Kubernetes allows us to specify the resource requirements of a container in the pod spec. 
+
+ **Resource Request** means the amount of resources that are necessary to run a container, and what they do is they govern which worker node the containers will actually be scheduled on. A pod will only be a run on a node that has enough available resource to run the pod's containers. 
+
+**Resource Limit** defines a maximum value for the resource usage of a container. 
+
+ ```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: melonapp-pod
+spec:
+  containers:
+  - name: melonapp-container
+    image: busybox
+    command: ['sh', '-c', 'echo stay tuned! && sleep 3600']
+    resources:
+      requests:
+        memory: "64Mi"   # 64 Megabytes
+        cpu: "250m"  #250em means 250 millis CPUs is 1 1/1000 of a CPU or 0.25 CPU cores
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+
+  ```
