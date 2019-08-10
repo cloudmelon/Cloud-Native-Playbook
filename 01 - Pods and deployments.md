@@ -21,7 +21,7 @@ A container can interact with one another in three ways :
 
 <img src="screenshots/Multi-container process namespace.PNG" alt="multi-container-sharedstorage" width="800px"/>
 
-### Multi-container pod design pattern
+### Play 2 : Multi-container pod design pattern
 
 Three multi-container pod design pattern :
 - **sidecar** pattern uses a sidecar container that enhances the functionality of the main container. Example: A sidecar container that sinks files from a git repository to the file system of a web server container. Every two minutes checks for new version of these files. If the files have been updated, it pulls in the new files and pushes them into the file system of the main container, so they're automatically updated without even having to restart or redeploy that container.
@@ -56,7 +56,7 @@ After creating the pod, you can use kubectl command to check the status of pod t
 <img src="screenshots/multi-container.PNG" alt="multi-container" width="800px"/>
 
 
-## Play 2 : Manage namespaces
+## Play 3 : Manage namespaces
 
 Get all namespaces using the following : 
 
@@ -97,7 +97,7 @@ Check pod by namespaces :
 
 
 
-## Play 3 : Manage deployments
+## Play 4 : Manage deployments
 
 **Deployments** provide a way to define a desired state for the replica pod.
 
@@ -281,9 +281,9 @@ Example of chaining multiple selectors together using a **comma-delimited** list
 
  Kubernetes allows us to specify the resource requirements of a container in the pod spec. 
 
- **Resource Request** means the amount of resources that are necessary to run a container, and what they do is they govern which worker node the containers will actually be scheduled on. A pod will only be a run on a node that has enough available resource to run the pod's containers. 
+ **Resource Request** means the amount of resources that are necessary to run a container, and what they do is they govern which worker node the containers will actually be scheduled on. So when Kubernetes is getting ready to run a particuler pod, it's going to choose a worker node based on the resource requests of that pod's contianers. And Kubernetes will use those values to ensure that it chooses a node that actually has enough resoruces available to run that pod.  A pod will only be a run on a node that has enough available resource to run the pod's containers. 
 
-**Resource Limit** defines a maximum value for the resource usage of a container. 
+**Resource Limit** defines a maximum value for the resource usage of a container. And if the container goes above that maximum value than it's likely to be killed or restarted by the Kubernetes cluster. So resource limits just provided a way to kind of put some constraints around, how much resource is your containers are allowed to use and prevent certain containers from just comsuming a whole bunch of resource is and running away with all the resoruces in your cluster, potentially cause issues for other containers and applications as well. 
 
  ```yaml
 apiVersion: v1
@@ -298,7 +298,7 @@ spec:
     resources:
       requests:
         memory: "64Mi"   # 64 Megabytes
-        cpu: "250m"  #250em means 250 millis CPUs is 1 1/1000 of a CPU or 0.25 CPU cores
+        cpu: "250m"  #250em means 250 millis CPUs is 1 1/1000 of a CPU or 0.25 CPU cores ( 1/4 one quarter of CPU cores)
       limits:
         memory: "128Mi"
         cpu: "500m"

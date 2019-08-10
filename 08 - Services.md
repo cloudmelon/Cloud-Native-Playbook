@@ -2,7 +2,7 @@
 
 Services in Kubernetes provides an abstraction layer which allow network access to a dynamic set of pods. Services use a selector and anything that tries to access the service with network traffic, that traffic is going to be proxy to one of the pods that is selected through that selector. 
 
-### Service types and its scenarios
+###  Play 1 : Service types and its scenarios
 
 - **Cluster IP** - Creating a service that is designed to accessed by other pods within the cluster by using ClusterIP. This is the default ServiceType, it is also accessible using the cluter DNS.
 
