@@ -48,3 +48,34 @@ A yaml definition for a secret :
             name: melon-secret
             key: myKey
  ```
+
+ We can also consum that secret via volumes as well which has been mentioned in Part 5 Volumes. Please have a look if need further understanding. 
+
+
+ ### Play 3 : Service Accounts 
+
+ You may have some applications that actually need to talk to Kubernetes cluster in order to do some automation get information. **SeriviceAccounts** therefore allow containers running in pod to access the Kubernetes API securely with properly limited permissions. 
+
+ You can create a service account by the following account : 
+
+       kubectl create serviceaccount melon-serviceaccount
+
+ Double check if your available service account of your cluster : 
+
+       kubectl get service account
+
+ You can determine the ServiceAccount that a pod will use by specifying a **serviceAccountName** in the pod spec like the following :
+
+ ```yaml
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    name: melon-serviceaccount-pod
+  spec:
+    serviceAccountName: melon-serviceaccount
+    containers:
+    - name: melonapp-svcaccount-container
+      image: busybox
+      command: ['sh', '-c','echo stay tuned!&& sleep 3600']
+ ```
+
