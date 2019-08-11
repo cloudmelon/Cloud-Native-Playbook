@@ -88,3 +88,10 @@ The similar output will look like the following :
 You can use the following command to check it exactly :
 
     kubectl exec my-configmap-volume-pod -- cat /etc/config/myKey
+
+
+Myself also enjoyed to create the configmap from file such as the following ( here k is the alias for kubectl ): 
+
+    k create configmap fluentd-config --from-file=/usr/test/fluent.conf
+
+    k get configmap -o yaml > config.yaml
