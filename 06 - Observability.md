@@ -23,17 +23,17 @@
         image: busybox
         command: ['sh', '-c', "echo Hello, Kubernetes! && sleep 3600"]
         livenessProbe:
-        httpGet:
+          httpGet:
             path: /
             port: 80
-        initialDelaySeconds: 5
-        periodSeconds: 5
+          initialDelaySeconds: 5
+          periodSeconds: 5
         readinessProbe:
-        httpGet:
+          httpGet:
             path: /
             port: 80
-        initialDelaySeconds: 5
-        periodSeconds: 5   
+          initialDelaySeconds: 5
+          periodSeconds: 5   
  ```
 
 
