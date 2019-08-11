@@ -14,3 +14,37 @@ set the default context to my-cluster-name
 
 
 ### Play 2 : Secrets
+
+**Secrets** are simplely a way to store sensitive data in your Kubernetes cluster, such as passords, tokens and keys then pass it to container runtime ( rather than storing it in a pod spec or in the container itself ). 
+
+A yaml definition for a secret : 
+
+```yaml
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: melon-secret
+  stringData:
+    myKey: myPassword
+ ```
+
+ Create a pod to consume the secret using envirnoment variable:
+
+
+```yaml
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    name: melon-secret-pod
+  spec:
+    containers:
+    - name: melonapp-secret-container
+      image: busybox
+      command: ['sh', '-c','echo stay tuned!&& sleep 3600']
+      env: 
+      - name: MY_PASSWORD
+        valueFrom: 
+          secretKeyRef: 
+            name: melon-secret
+            key: myKey
+ ```
