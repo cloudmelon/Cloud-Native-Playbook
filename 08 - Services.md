@@ -42,6 +42,12 @@ Create a service using the following :
     kubectl expose deployment webfront-deploy --port=80 --target-port=80 --type=NodePort
 
 
+Playing with service is funny ( here k is the alias of kubectl ) :
+
+    k expose deployment auth-deployment --type=NodePort --port 8080 --name=auth-svc --target-port 80
+
+    k expose deployment data-deployment --type=ClusterIP --port 8080 --name=data-svc --target-port 80
+
 ### Check services and endpoints
 
 Using the following command to check the service available :
