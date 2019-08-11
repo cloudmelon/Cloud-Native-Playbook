@@ -4,13 +4,57 @@
 
 A pod's securityContext defines privilege and access control settings for a pod. If a pod or container needs to interact with the security mechanisms of the underlyng operating system in a customized way then securityContext is how we can go and accompanish that.  
 
-display the current-context
+Display the current-context
 
     kubectl config current-context	
 
-set the default context to my-cluster-name
+Set the default context to my-cluster-name
 
     kubectl config use-context my-cluster-name        
+
+The securityContext is defined as part of a pod's spec such as the following: 
+
+You can create a user in prior :
+
+   sudo useradd -u 2000 container-user-0
+
+   sudo groupadd -g 3000 container-group-0
+
+create the file in both worker node:
+
+   sudo mkdir -p /etc/message
+
+   echo "hello" | sudo tee -a /etc/message/message.txt
+
+change of permission here :
+
+   sudo chown 2000:3000 /etc/message/message.txt
+
+   sudo chmod 640 /etc/message/message.txt
+
+
+```yaml
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    name: melon-securitycontext-pod
+  spec:
+    securityContext:
+      runAsUser: 2000
+      fsGroup: 3000
+    containers:
+    - name: melonapp-secret-container
+      image: busybox
+      command: ['sh', '-c','cat /message/message.txt && sleep 3600']
+      volumeMounts:
+      - name: message-volume
+        mountPath: /message
+    volumes:
+    - name: message-volume
+      hostPath:
+        path: /etc/message
+ ```
+    
 
 
 ### Play 2 : Secrets
