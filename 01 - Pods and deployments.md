@@ -21,6 +21,10 @@ C:\Users\melqin\Documents\00 - GitHub\melonkube\screenshots
 
 <img src="screenshots/Multi-container process namespace.PNG" alt="multi-container-sharedstorage" width="800px"/>
 
+### DaemonSet
+DaemonSets do not use a scheduler to deploy pods. When you need to run 1 replicas and exactly 1 on each node, daemonset is a perfect match.  As nodes are removed from the cluster, those Pods are garbage collected.
+
+
 ## Play 2 : Multi-container pod design pattern
 
 Three multi-container pod design pattern :
