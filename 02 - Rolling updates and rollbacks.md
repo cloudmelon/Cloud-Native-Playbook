@@ -71,6 +71,13 @@ Then you can get back to the specific revision :
 
      kubectl rollout undo deployment kubedeploy --to-revision=2
 
+Check if rollout successfully using the following : 
+
+     kubectl rollout status deployment/candy-deployment
+
+You'll see the output similar to the following : 
+
+ <img src="screenshots/Rollout status.PNG" alt="rollout status" width="800px"/>   
     
 **--revision** flag will give more information on a specific revision number
 

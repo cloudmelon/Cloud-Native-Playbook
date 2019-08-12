@@ -21,7 +21,7 @@ A container can interact with one another in three ways :
 
 <img src="screenshots/Multi-container process namespace.PNG" alt="multi-container-sharedstorage" width="800px"/>
 
-### Play 2 : Multi-container pod design pattern
+## Play 2 : Multi-container pod design pattern
 
 Three multi-container pod design pattern :
 - **sidecar** pattern uses a sidecar container that enhances the functionality of the main container. Example: A sidecar container that sinks files from a git repository to the file system of a web server container. Every two minutes checks for new version of these files. If the files have been updated, it pulls in the new files and pushes them into the file system of the main container, so they're automatically updated without even having to restart or redeploy that container.
