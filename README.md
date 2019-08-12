@@ -20,3 +20,12 @@ By cloudmelon
 Please go to my blog cloud-melon.com to get more details about how to implement this solution and more about Microsoft Azure ( ref link : https://cloud-melon.com )
 
 Feel free to reach out to my twitter **@MelonyQ** for more details ( https://twitter.com/MelonyQ ). 
+
+
+## Useful references : 
+
+- Kubernetes By Example : 
+  http://kubernetesbyexample.com/  
+
+- Kubernetes the hard way on Azure : 
+  https://github.com/ivanfioravanti/kubernetes-the-hard-way-on-azure/tree/master/docs
