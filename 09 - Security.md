@@ -106,7 +106,7 @@ A yaml definition for a secret :
 
  Double check if your available service account of your cluster : 
 
-       kubectl get service account
+       kubectl get serviceaccount
 
  You can determine the ServiceAccount that a pod will use by specifying a **serviceAccountName** in the pod spec like the following :
 
