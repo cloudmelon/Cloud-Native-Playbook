@@ -1,4 +1,4 @@
-# Playbook Part 1 : Pods and deployments
+# Playbook Part 1 : Pods design
 
 **Kubelet** is like a captain of your ship, it registers the node, and create pod in worker node and monitors nodes and pods on a timely basis. 
 
@@ -159,74 +159,6 @@ Check pod by namespaces :
 
 
 
-
-## Play 4 : Manage deployments
-
-**Deployments** provide a way to define a desired state for the replica pod.
-
-You can use the yaml defined template to define a deloyment : 
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: melon-deploy
-  labels:
-    app: melonapp
-spec:
-  replicas : 3
-  selector:
-    matchLabels:
-      app: melonapp
-  template:
-    metadata:
-      labels:
-        app: melonapp
-    spec:
-      containers:
-      - name: nginx
-        image: nginx
-        ports:
-        - containerPort: 80
-
- ```
-
- Above yaml manifest means :
-
- - **spec.replicas** is the number of replica pods
- - **spec.template** is the template pod descriptor which defines the pods which will be created
- - **spec.selector** is the deployment will manage all pods whose labels match this selector
-
-Run Busybox image : 
-
-    kubectl run busybox --rm -it --image=busybox /bin/sh
-    
-Run nginx image : 
-
-    kubectl run nginx --image=nginx --dry-run -o yaml > pod-sample.yaml
-
-Create a deployment using the following : 
-
-    kubectl create deployment kubeserve --image=nginx:1.7.8
-
-Scale a deployment using the following : 
-
-    kubectl scale deployment kubeserve --replicas=5
-    
-
-Other useful command about query, edit, and delete deployment :
-    
-    kubectl get deployments
-
-    kubectl get deployment melon-deploy
-
-    kubectl describe deployment melon-deploy
-
-    kubectl edit deployment melon-deploy
-
-    kubectl delete deployment melon-deploy
-
-
-
 ## Play 4 : Jobs and CronJobs
 
 Jobs can be used to reliably execute a workload until it completes. The job will create one or more pods. When the job is finished, the containers will exit and the pods will enter the **Completed** status. The example of using jobs is when we want to run a particular workload and just to make sure it runs once and succeeds.
@@ -340,30 +272,4 @@ Example of chaining multiple selectors together using a **comma-delimited** list
 
 **Annotation** are similar to labels in that they can be used to store custom metatdata about objects. However, **cannot** be used to select or group objects in Kubernetes.  We can attach annotations to objects using the metadata.annotations sector or the object descriptor
 
- ## Play 6 : Resource requirements
-
- Kubernetes allows us to specify the resource requirements of a container in the pod spec. 
-
- **Resource Request** means the amount of resources that are necessary to run a container, and what they do is they govern which worker node the containers will actually be scheduled on. So when Kubernetes is getting ready to run a particuler pod, it's going to choose a worker node based on the resource requests of that pod's contianers. And Kubernetes will use those values to ensure that it chooses a node that actually has enough resoruces available to run that pod.  A pod will only be a run on a node that has enough available resource to run the pod's containers. 
-
-**Resource Limit** defines a maximum value for the resource usage of a container. And if the container goes above that maximum value than it's likely to be killed or restarted by the Kubernetes cluster. So resource limits just provided a way to kind of put some constraints around, how much resource is your containers are allowed to use and prevent certain containers from just comsuming a whole bunch of resource is and running away with all the resoruces in your cluster, potentially cause issues for other containers and applications as well. 
-
- ```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: melonapp-pod
-spec:
-  containers:
-  - name: melonapp-container
-    image: busybox
-    command: ['sh', '-c', 'echo stay tuned! && sleep 3600']
-    resources:
-      requests:
-        memory: "64Mi"   # 64 Megabytes
-        cpu: "250m"  #250em means 250 millis CPUs is 1 1/1000 of a CPU or 0.25 CPU cores ( 1/4 one quarter of CPU cores)
-      limits:
-        memory: "128Mi"
-        cpu: "500m"
-
-  ```
+ 
