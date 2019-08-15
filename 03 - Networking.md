@@ -104,6 +104,16 @@ There are multiple types of selectors:
 
 ### Play 2 : Kube-DNS :
 
+In the same namespaces, web pod can connect the db by using the db service directly. However if this web pod wants to connect to the db service in another namespace, if need to refer something like below :
+mysql.connect("db-service.dev.svc.cluster.local"), this domain refers to :
+
+- service name: db-service
+- namespace : dev
+- service : svc ( subdomain )
+- cluster.local is the default domain name of Kubernetes cluster 
+
+
+
 Kube-dns is a (kube-system) pod containing three container instances: kubedns, dnsmasq, and sidecar. This service is instrumental for kubernetes to function. Cluster-info shows the primary dns endpoint.
 ```
 [root@1716bb9df96b ~]# kubectl cluster-info

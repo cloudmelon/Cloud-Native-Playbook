@@ -175,30 +175,3 @@ So it is just give you a little more control over how quickly those new instance
 
 So those just give you a little more control over what actually occurs when you do a rolling update. 
 
-## Play 4 : Resource requirements
-
- Kubernetes allows us to specify the resource requirements of a container in the pod spec. 
-
- **Resource Request** means the amount of resources that are necessary to run a container, and what they do is they govern which worker node the containers will actually be scheduled on. So when Kubernetes is getting ready to run a particuler pod, it's going to choose a worker node based on the resource requests of that pod's contianers. And Kubernetes will use those values to ensure that it chooses a node that actually has enough resoruces available to run that pod.  A pod will only be a run on a node that has enough available resource to run the pod's containers. 
-
-**Resource Limit** defines a maximum value for the resource usage of a container. And if the container goes above that maximum value than it's likely to be killed or restarted by the Kubernetes cluster. So resource limits just provided a way to kind of put some constraints around, how much resource is your containers are allowed to use and prevent certain containers from just comsuming a whole bunch of resource is and running away with all the resoruces in your cluster, potentially cause issues for other containers and applications as well. 
-
- ```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: melonapp-pod
-spec:
-  containers:
-  - name: melonapp-container
-    image: busybox
-    command: ['sh', '-c', 'echo stay tuned! && sleep 3600']
-    resources:
-      requests:
-        memory: "64Mi"   # 64 Megabytes
-        cpu: "250m"  #250em means 250 millis CPUs is 1 1/1000 of a CPU or 0.25 CPU cores ( 1/4 one quarter of CPU cores)
-      limits:
-        memory: "128Mi"
-        cpu: "500m"
-
-  ```

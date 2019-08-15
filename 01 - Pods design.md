@@ -121,6 +121,10 @@ After creating the pod, you can use kubectl command to check the status of pod t
 
 ## Play 3 : Manage namespaces
 
+Default namespaces created by Kubernetes : kube-system, default and kube-public.
+
+
+
 Get all namespaces using the following : 
 
     kubectl get namespaces
@@ -157,6 +161,14 @@ Check pod by namespaces :
 
     Kubectl describe pod melon-ms-pod -n melon-ms
 
+
+We have to use the namespace option if the pods are not in default namespace, but what if we want to switch the dev namespace permanently so that we don't have to specify the namespace option any more. You can use the following to do this : 
+
+    kubectl config set-context &(kubectl config current-context) --namespace=dev
+
+You can then simply run the following command without the namespace option to list pods : 
+ 
+    kubetl get pods
 
 
 ## Play 4 : Jobs and CronJobs
@@ -272,4 +284,45 @@ Example of chaining multiple selectors together using a **comma-delimited** list
 
 **Annotation** are similar to labels in that they can be used to store custom metatdata about objects. However, **cannot** be used to select or group objects in Kubernetes.  We can attach annotations to objects using the metadata.annotations sector or the object descriptor
 
- 
+ ## Play 6 : Resource requirements
+
+ Kubernetes allows us to specify the resource requirements of a container in the pod spec. 
+
+ **Resource Request** means the amount of resources that are necessary to run a container, and what they do is they govern which worker node the containers will actually be scheduled on. So when Kubernetes is getting ready to run a particuler pod, it's going to choose a worker node based on the resource requests of that pod's contianers. And Kubernetes will use those values to ensure that it chooses a node that actually has enough resoruces available to run that pod.  A pod will only be a run on a node that has enough available resource to run the pod's containers. 
+
+**Resource Limit** defines a maximum value for the resource usage of a container. And if the container goes above that maximum value than it's likely to be killed or restarted by the Kubernetes cluster. So resource limits just provided a way to kind of put some constraints around, how much resource is your containers are allowed to use and prevent certain containers from just comsuming a whole bunch of resource is and running away with all the resoruces in your cluster, potentially cause issues for other containers and applications as well. 
+
+ ```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: melonapp-pod
+spec:
+  containers:
+  - name: melonapp-container
+    image: busybox
+    command: ['sh', '-c', 'echo stay tuned! && sleep 3600']
+    resources:
+      requests:
+        memory: "64Mi"   # 64 Megabytes
+        cpu: "250m"  #250em means 250 millis CPUs is 1 1/1000 of a CPU or 0.25 CPU cores ( 1/4 one quarter of CPU cores)
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+
+  ```
+
+**Resource quota** provides constraints that limit aggregate resource consumption per namespace
+
+ ```yaml
+  apiVersion: v1
+  kind: ResourceQuota
+  metadata:
+    name: melon-pods
+    namespace: melon-ns
+  spec:
+    hard:
+      cpu: "5"
+      memory: 10Gi
+      pods: "10"
+  ```
