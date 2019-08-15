@@ -1,8 +1,10 @@
 # Playbook Part 1 : Pods and deployments
 
-**Kubelet** is like a captain of your ship, it registers the node, and create pod in worker node and monitors nodes and pods on a timely basis.
+**Kubelet** is like a captain of your ship, it registers the node, and create pod in worker node and monitors nodes and pods on a timely basis. 
 
 ## Play 1 : Pod Design - Multi-container Pods
+
+In general, it is good to have a one-to-one relationship between container and pod. 
 
 ### Basics
 
@@ -22,6 +24,60 @@ C:\Users\melqin\Documents\00 - GitHub\melonkube\screenshots
 - Shared **Process Namespace**. Essentially what this does is it allows the two containers to signal one another's processes. In order to implement that, you have to add an attribute to your pod back called **shareProcessNamespace** and set that to **true**. Once that is set to true, your containers can actually interact directly with one another's processes using a shared process namespace.
 
 <img src="screenshots/Multi-container process namespace.PNG" alt="multi-container-sharedstorage" width="800px"/>
+
+### Replication controller & Replicas Set
+
+Replication controller spans across multiple nodes in the cluster. It helps us balance the load across multiple pods on different nodes as well as scale our application when demand increases. 
+
+**ReplicaSet** is the new generation to help pods achieve higher availability. We can ensure we'll always have a certain number defined replicas at a time. The role of the replicaset is to monitor the pods and if any of them were to fail, deploy new ones. There could be 100s of other pods in the cluster running different applications. This is where labelling our pods during creation comes in handy. We could now provide these labels as a filter for replicaset. Under the selector section we use to match labels filter and provide the same label we used while creating the pods. 
+
+```yaml
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: frontend
+  labels:
+    app: melonapp-rs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: melonapp-rs
+  template:
+    metadata:
+      labels:
+        app: melonapp-rs
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+ ```
+
+The **matchLabels** selector simply matches the labels specified under it to the labels on the pods.
+
+To check your replicas set, using the following command : 
+
+      kubectl get replicaset
+
+Or 
+
+      kubectl get rs
+
+To update the number of replicasset there are two ways :
+
+1. Update the **replicas: 3** to specific number **replicas:6** for example
+
+2. Use the following command : 
+
+   kubectl scale replicaset melon-rs --replicas=6
+
+Or combine the spec : 
+
+   kubectl scale --replicas=6 -f melon-rs-spec.yaml
+
+Delete the replicaset is the following command:
+
+   kubectl delete replicaset melon-rs
 
 ### DaemonSet
 DaemonSets do not use a scheduler to deploy pods. When you need to run 1 replicas and exactly 1 on each node, daemonset is a perfect match.  As nodes are removed from the cluster, those Pods are garbage collected.

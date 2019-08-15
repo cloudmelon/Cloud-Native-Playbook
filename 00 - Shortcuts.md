@@ -18,6 +18,9 @@ View controller manager options :
 
       ps -aux | grep kube-controller-manager
 
+Here are all the controllers in kube-controller-manager:
+
+<img src="screenshots/Controllers.PNG" alt="controllers" width="800px"/>
 
 ### Play 1. Basics :
 
