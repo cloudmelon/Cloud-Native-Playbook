@@ -89,6 +89,11 @@ Sort by capacity :
 
     --sort-by=.spec.capacity.storage  
    
+ By default as soon as the command is run, the resource will be created. If you simply want to test your command, use the following :
+ 
+   --dry-run 
+   
+as option. This will not create the resource, instead, tell you weather the resource can be created and if your command is right.
    
 
 ### Play 3. Write spec to a file 

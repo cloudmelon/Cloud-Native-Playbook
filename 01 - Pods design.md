@@ -6,6 +6,10 @@
 
 In general, it is good to have a one-to-one relationship between container and pod. 
 
+create a pod using imperative command like the following : 
+
+    kubectl run --generator=run-pod/v1 nginx-pod --image=nginx:alpine
+
 ### Basics
 
 Multi-container pods are simply pods with more than one container that are working together and sort of forming a single unit. It is often a good idea to keep containers separate by keeping them in their own separate pods, but there are several cases where multi-container pods can be beneficial. 
@@ -24,6 +28,11 @@ C:\Users\melqin\Documents\00 - GitHub\melonkube\screenshots
 - Shared **Process Namespace**. Essentially what this does is it allows the two containers to signal one another's processes. In order to implement that, you have to add an attribute to your pod back called **shareProcessNamespace** and set that to **true**. Once that is set to true, your containers can actually interact directly with one another's processes using a shared process namespace.
 
 <img src="screenshots/Multi-container process namespace.PNG" alt="multi-container-sharedstorage" width="800px"/>
+
+### Static Pod
+
+The kubelet can manage a node independently, it can create pods ( but need API server to provide pod details ), the question here is how do we provide a pod definition file to the kubelet without a kube-api server ? You can configure the kubelet to read the pod definition files from a directory on the server designated to store pod definition. Kubelet check this directory periodically reads these files and creates pods on the host. 
+
 
 ### Replication controller & Replicas Set
 
