@@ -26,6 +26,9 @@ Feel free to reach out to my twitter **@MelonyQ** for more details ( https://twi
 
 - Kubernetes By Example : 
   http://kubernetesbyexample.com/  
+  
+- Mastering Kubernetes By doing AKS Workshop : 
+  https://aksworkshop.io/
 
 - Kubernetes the hard way on Azure : 
   https://github.com/ivanfioravanti/kubernetes-the-hard-way-on-azure/tree/master/docs
