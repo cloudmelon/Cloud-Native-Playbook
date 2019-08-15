@@ -25,6 +25,8 @@ To list all keys stored by Kubernetes, run the etcdctl get command like the foll
 
 When we set up high availability in Kubernetes the only option to note for now is the advertised client url. This is the address on which ETCD listens. It happens to be on the IP of the server an on port **2379** which is the default port on which etcd listens. This is the **URL** that should be configured on the **kube-api** server when it tries to reach the etcd server.
 
+Kubernetes stores data in the specific directory structure the root directory is a registry and under that you have the various Kubernetest constructs such as minions or nodes, pods, replicasts, deployments etc. In the HA environment, you'll have multi-master, then you'll have also multiple etcd instances spread across the master nodes. In that case, make sure to specifiy the ETCD instances know about each other by setting the right parameter in the etcd service configuration. The **initial-cluster** option is where you much specify the different instances of the etcd service. 
+
 
 ### 1. Backup etcd :
 

@@ -1,5 +1,7 @@
 # Playbook Part 1 : Pods and deployments
 
+**Kubelet** is like a captain of your ship, it registers the node, and create pod in worker node and monitors nodes and pods on a timely basis.
+
 ## Play 1 : Pod Design - Multi-container Pods
 
 ### Basics
