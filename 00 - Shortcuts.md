@@ -40,8 +40,11 @@ Display nodes:
 is equal to :
   
     k get no
-    
-    
+
+Get everything : 
+
+    kubectl get all 
+
 Display services:
 
      kubectl get services

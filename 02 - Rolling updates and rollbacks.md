@@ -2,12 +2,21 @@
 
 This section we're going to talk a little bit about how to gradually roll out new versions using rolling updates and how to roll back in the event of a problem.  
 
+Let's start with what if you want to deploy an application in the production. Let's say you have a number of web servers that needs to be deployed for some reasons, such many instances right ? Whenever newer versions of application builds become available on the docker registry you would like to upgrade your Docker instances seamlessly. However when you upgrade your instances, you do not want to upgrade all of them at once as we just did. This may impact users accessing our applications so you might want to upgrade them one after the other. And that kind of upgrade is known as rolling updates. 
+
+## Play 0 : Scenario playing with deployment
+
+Suppose one of the upgrades you performed resulted in an unexpected error and you're asked to undo the recent change you would like to be able to roll back the changes that were recently carried out.  Finally say for example you would like to make multiple changes to your environment as upgrading the underlying web server versions as well as scaling your environment and also modifying the resource allocations etc. You do not want to apply each change immediatly after the command is run instead you would like to apply a pause to your environment, make the changes and then resume so that all changes are rolled-out together. All of these capabilities are available with the Kubernetes deployement that comes higher in the hierarchy. 
+
+To wrap-up, the deployment provides us with the capability to upgrade the underlying instances seamlessly using rolling updates, undo changes, and pause and resume changes as required. 
+
 
 ## Play 1 : Manage deployments
 
 **Deployments** provide a way to define a desired state for the replica pod.
 
 You can use the yaml defined template to define a deloyment : 
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
