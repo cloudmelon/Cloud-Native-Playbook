@@ -321,6 +321,18 @@ spec:
 
   ```
 
+  
+By default : 1vCPU and 512Mi, if you don't like the default limit you canchange them by adding a limit section under the resources.  Remember that the limits and requests are set for each container within the pod
+
+You can refer the following diagram to gain better vision : 
+
+<img src="screenshots/Gigabyte and Gibibyte.PNG" alt="Gigabyte and Gibibyte" width="800px"/>  
+
+So what happens when a pod tries to exceed resources beyond its specified limit :
+- A container cannot use more CPU resources than its limit.
+- However, it can use more memory resource than its limit
+So if a pod tries to consume more memory than its limit constantly, the pod will be terminated.
+
 **Resource quota** provides constraints that limit aggregate resource consumption per namespace
 
  ```yaml
@@ -336,10 +348,12 @@ spec:
       pods: "10"
   ```
 
+
+
 ## Play 7 : Manual Scheduling
 
 You can constrain a Pod to only be able to run on particular Node(s) , or to prefer to run on particular nodes. There are several ways to do this, and the recommended approaches all use label selectors to make the selection. Generally such constraints are unnecessary, as the scheduler will automatically do a reasonable placement (e.g. spread your pods across nodes, not place the pod on a node with insufficient free resources, etc.) but there are some circumstances where you may want more control on a node where a pod lands, e.g. to ensure that a pod ends up on a machine with an SSD attached to it, or to co-locate pods from two different services that communicate a lot into the same availability zone.
-
+ 
 
 ```yaml  
 apiVersion: v1
@@ -354,3 +368,5 @@ spec:
   ```
 
   Ref : https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+
+
