@@ -36,7 +36,9 @@ Create a service using yaml definition :
 
  ```
 
-In this specification, the port 8080 is the service going to listen on, it doesn't necessarily to the same port that the containers in the pods are listening on.  Here the port 80 is where the pod actually listening. 
+In this specification, the port 8080 is the **service** going to listen on ( remember these terms are simply from the view point of the service ), it doesn't necessarily to the same port that the containers in the pods are listening on. Here the **target port** 80 is where the pod actually listening, is where the service forward the request to.  
+
+The service is in fact like a virtual server inside the node, inside the cluster, it has its own IP address and that IP address is called the cluster IP of the service. The **NodePort** here is that we have the port on the node itself which we use to access the webserver externally. 
 
 
 Create a service using the following : 

@@ -335,3 +335,5 @@ spec:
       memory: 10Gi
       pods: "10"
   ```
+
+   ## Play 7 : Manual Scheduling
