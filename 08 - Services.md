@@ -38,7 +38,13 @@ Create a service using yaml definition :
 
 In this specification, the port 8080 is the **service** going to listen on ( remember these terms are simply from the view point of the service ), it doesn't necessarily to the same port that the containers in the pods are listening on. Here the **target port** 80 is where the pod actually listening, is where the service forward the request to.  
 
-The service is in fact like a virtual server inside the node, inside the cluster, it has its own IP address and that IP address is called the cluster IP of the service. The **NodePort** here is that we have the port on the node itself which we use to access the webserver externally. 
+The service is in fact like a virtual server inside the node, inside the cluster, it has its own IP address and that IP address is called the cluster IP of the service. The **NodePort** here is that we have the port on the node itself which we use to access the webserver externally. NodePorts can only be in a valid range which by default is from **30000** to **32767**.
+
+If you don't provide a target port, it is assume to be the same as port. And if you don't provide a node port, a free port in the range between 30000 and 32767 is automatically allocated. 
+
+Check out the following diagram : 
+
+<img src="screenshots/Service.PNG" alt="solution diagram" width="800px"/>
 
 
 Create a service using the following : 
@@ -51,6 +57,15 @@ Playing with service is funny ( here k is the alias of kubectl ) :
     k expose deployment auth-deployment --type=NodePort --port 8080 --name=auth-svc --target-port 80
 
     k expose deployment data-deployment --type=ClusterIP --port 8080 --name=data-svc --target-port 80
+
+
+In any case, the service is automatically updated making its highly flexible and adaptive once created : 
+
+- Single pod on a single node ( label selector : yes )
+- Multiple pods on a single node ( label selector : yes, node affinity : yes )
+- Multiple pods across multiple nodes ( label selector : yes )
+
+<img src="screenshots/Service pod across nodes.PNG" alt="Service pod across nodes" width="800px"/>
 
 ### Check services and endpoints
 

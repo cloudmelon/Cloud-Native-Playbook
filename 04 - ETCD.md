@@ -34,3 +34,4 @@ Kubernetes stores data in the specific directory structure the root directory is
 
   ETCDCTL_API=3 etcdctl --endpoints http://127.0.0.1:4001 snapshot save snapshotdb --cert-file /xxx --key-file /... --ca-file
     
+Ref : https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/recovery.md

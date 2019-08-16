@@ -336,4 +336,21 @@ spec:
       pods: "10"
   ```
 
-   ## Play 7 : Manual Scheduling
+## Play 7 : Manual Scheduling
+
+You can constrain a Pod to only be able to run on particular Node(s) , or to prefer to run on particular nodes. There are several ways to do this, and the recommended approaches all use label selectors to make the selection. Generally such constraints are unnecessary, as the scheduler will automatically do a reasonable placement (e.g. spread your pods across nodes, not place the pod on a node with insufficient free resources, etc.) but there are some circumstances where you may want more control on a node where a pod lands, e.g. to ensure that a pod ends up on a machine with an SSD attached to it, or to co-locate pods from two different services that communicate a lot into the same availability zone.
+
+
+```yaml  
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  nodeName: melonnode
+  ```
+
+  Ref : https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
