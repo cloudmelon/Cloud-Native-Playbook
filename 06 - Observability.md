@@ -1,6 +1,6 @@
 # Playbook Part 6: Observability - Debug and troubleshootings
 
-### 1. Liveness and Readiness Probes :
+## Play 1. Liveness and Readiness Probes :
 
 **Probes** allows you to customize how Kubernetes determines the status of your containers. 
 
@@ -9,7 +9,7 @@
 **Readiness Probes** indicates whether the container is ready to accept request
 
 
-### 2. Get your hands dirty :
+## Play 2. Get your hands dirty :
 
 
 ```yaml
@@ -37,7 +37,7 @@
  ```
 
 
-### 3. Container logging :
+## Play 3. Container logging :
 
 Use the following command for single container : 
 
@@ -49,7 +49,7 @@ Use the following command for multi-container :
 
 
 
-### 4. Monitoring applications : 
+## Play 4. Monitoring applications : 
 
 Basically you have to bear in mind is to using kubectl top command :
 
@@ -67,20 +67,31 @@ The output looks like the following :
 <img src="screenshots/Kubectl top.PNG" alt="kubectl top" width="800px"/>
 
 
-### 5. Debugging & Troubleshooting : 
+## Play 5. Debugging & Troubleshooting : 
 
 
-Play 1 : Use the following to check the container :
+### Use the following to check the container :
 
      kubectl describe pod melon-pod
 
 The **Events** section is very important to check. 
 
-Play 2 : Edit the pod :
+### Edit the pod :
  
       kubectl edit pod melon-pod -n melon-ns
 
-Play 3: Add liveness probe
+Remember, you CANNOT edit specifications of an existing POD other than the below.
+
+      spec.containers[*].image
+
+      spec.initContainers[*].image
+
+      spec.activeDeadlineSeconds
+
+      spec.tolerations
+
+
+### Add liveness probe
 
 Save the object specification, export the spec NOT the status : 
 
@@ -95,7 +106,7 @@ Add liverness probe :
         port: 80
  ```
 
-Delete pod :
+### Delete pod :
 
      Kubectl delete pod melon-pod -n melon-ns
 
