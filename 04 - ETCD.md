@@ -1,6 +1,6 @@
 # Playbook Part 4 : ETCD
 
-ETCD is a distributed reliable key-value store that is simple, secure and fast. The etcd data store stores information regarding the cluster such as the nodes, pods, configs, secrets, accounts, roles, bindings and others. Every information you see when you run the **kubectl get** command is from the etcd server. Every change you make to your cluster, such as adding addtional nodes, deploying pods or replicasets are updated in the etcd server. Only once it is updated in the etcd server, is the change considered to be complete. 
+ETCD is a distributed reliable key-value store that is simple, secure and fast. The etcd data store stores information regarding the cluster such as the nodes, pods, configs, secrets, accounts, roles, bindings and others ( the state of the cluster and information about the cluster itself ). Every information you see when you run the **kubectl get** command is from the etcd server. Every change you make to your cluster, such as adding addtional nodes, deploying pods or replicasets are updated in the etcd server. Only once it is updated in the etcd server, is the change considered to be complete. 
 
 I'd elaborate it further more here. Traditionally, the limit of relational database is everytime a new information needs to be added the entire table is affected and leads to a lot of empty cells. A key-value store stores information in the form of documents or pages so each individual gets a document and all information about that individual is stored with that file, these files can be in any format or structure and changes to one file does not affect the others. Similar documents while you could store and retrieve simple key and values when your data gets complex. You typically end up transacting in data formats like JSON or YAML it's easy to install and get started. 
 
@@ -28,10 +28,51 @@ When we set up high availability in Kubernetes the only option to note for now i
 Kubernetes stores data in the specific directory structure the root directory is a registry and under that you have the various Kubernetest constructs such as minions or nodes, pods, replicasts, deployments etc. In the HA environment, you'll have multi-master, then you'll have also multiple etcd instances spread across the master nodes. In that case, make sure to specifiy the ETCD instances know about each other by setting the right parameter in the etcd service configuration. The **initial-cluster** option is where you much specify the different instances of the etcd service. 
 
 
-### 1. Backup etcd :
+### Play 2 :  Backup etcd 
 
- Set environment variable ETCDCTL_API=3 to use v3 API or ETCDCTL_API=2 to use v2 API. If you're using v3 version you can use the following: 
+ETCD cluster is hosted on the master node while configuring ETCD we specified a location where all the data will be stored as the following, that is the directory that can be configured to be backup by the backup tool:
 
-  ETCDCTL_API=3 etcdctl --endpoints http://127.0.0.1:4001 snapshot save snapshotdb --cert-file /xxx --key-file /... --ca-file
+      --data--dir=/var/lib/etcd
+
+Set environment variable ETCDCTL_API=3 to use v3 API or ETCDCTL_API=2 to use v2 API. If you're using v3 version you can use the following: 
+
+      ETCDCTL_API=3 etcdctl --endpoints http://127.0.0.1:4001 **snapshot save** snapshotdb --cert-file /xxx --key-file /... --ca-file
+
+  Then you can us **ls** to check the backup would be like the following : 
+
+      snapshot.db
+
+ You can also check the status of your backup :
+
+      ETCDCTL_API=3 etcdctl snapshot status snapshot.db
     
+
+
+
+
+### Play 3 :  Restore etcd 
+
+As the etcd cluster and kube-apiserver depends on it, so we have to stop the apiserver :
+
+     service kube-apiserver stop
+
+Then restore using the folllowing command : 
+
+     ETCDCTL_API=3 etcdctl snapshot restore snapshot.db  \
+      --name m1 \
+      --initial-cluster m1=http://host1:2380,m2=http://host2:2380,m3=http://host3:2380 \
+      --initial-cluster-token etcd-cluster-1 \
+      --initial-advertise-peer-urls http://host1:2380
+
+
+Then 
+
+     systemctl daemon reload 
+
+     service etcd restart
+
+     service kube-apiser start
+
+
+
 Ref : https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/recovery.md

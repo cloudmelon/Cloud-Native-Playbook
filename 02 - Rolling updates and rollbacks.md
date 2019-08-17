@@ -175,3 +175,26 @@ So it is just give you a little more control over how quickly those new instance
 
 So those just give you a little more control over what actually occurs when you do a rolling update. 
 
+
+## Play 4: OS Upgrades
+
+Imagine there is one node offline now which host your blue and green application, When you have multiple replicas of the blue pod, the users accessing the blue application are not impacted as they're being served through the other blue pod that's online, however users accessing the green pod, are impacted as that was the only pod running the green application. 
+
+What does Kubernetes do in this case ? If the node came back online immediatelu, then the kubectl process starts and the pods come back. However, if the node was down for more than **5 minutes**, then the pods are **terminated** from that node. Well, Kubernetes considers them as dead. If the pods where part of a replicaset then they're recreated on other nodes. The time it waits for a pod to come back online is known as the pod eviction timeout that is set on the controller manager with a default value of 5 minutes. When the node comes back online after the pod eviction timeout if comes up blank without any pods scheduled on it. 
+
+If you're not sure the node will be back online within 5 minutes, the safe way is to drain the nodes of all the workloads so that the pods are moved to other nodes in the cluster by using the following command : 
+
+    kubectl drain node-super-007
+
+    k drain node-super-007 --ignore-daemonsets
+
+Technically there are not moved when you drain the node, the pods are gracefully terminated from the node that they're on and recreated on another. The node is also **cordoned** or marked as **unschedulable**. Meaning no pods can be scheduled on this node until you specifically you remove the restriction. When the pods are safe on the other nodes, you can upgrade and reboot the node, when it comes back online, it is still unschedulable, you then need to uncordon it so that pods can be scheduled on it again by using the following command : 
+
+    kubectl uncordon node-super-007
+
+
+Now remember, the pods that were moved to the other nodes don't automatically fall back. If pods were deleted or new pods were created in the cluster, then they would be created. 
+
+There is another command simply mark the node unschedulable, unlike drain, it does not terminate or move the pods on an existing node :
+
+    kubectl cordon node-super-007
