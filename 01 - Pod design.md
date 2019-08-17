@@ -41,6 +41,38 @@ You can use the following command to set up the pods bootstrapped by kubeadm :
 
 <img src="screenshots/Static pod.PNG" alt="static pod" width="800px"/>
 
+## Play 2 : InitContainer
+
+An **initContainer** is configured in a pod like all other containers, except that it is specified inside a initContainers section,  like the following :
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: melon-pod
+  labels:
+    app: melonapp
+spec:
+  containers:
+  - name: melonapp-container
+    image: busybox:1.28
+    command: ['sh', '-c', 'echo The melonapp is running! && sleep 3600']
+  initContainers:
+  - name: init-melonservice
+    image: busybox:1.28
+    command: ['sh', '-c', 'until nslookup melonservice; do echo waiting for melonservice; sleep 2; done;']
+  - name: init-melondb
+    image: busybox:1.28
+    command: ['sh', '-c', 'until nslookup melondb; do echo waiting for melondb; sleep 2; done;']
+```
+
+When a POD is first created the initContainer is run, and the process in the initContainer must run to a completion before the real container hosting the application starts. 
+
+You can configure multiple such initContainers as well, like how we did for multi-pod containers. In that case each init container is run one at a time in sequential order.
+
+If any of the initContainers fail to complete, Kubernetes restarts the Pod repeatedly until the Init Container succeeds.
+
+
 ## Play 2 : Pod Design - Multi-container Pods
 
 In general, it is good to have a one-to-one relationship between container and pod. 
