@@ -31,6 +31,15 @@ then in **kubeconfig.yaml** file :
 
 Once the static pod has been created, you can use **docker ps** command to review it. The reason why not the kubectl command is we don't have the rest of the Kubernetes cluster. Kubectl utility works with kube-api server. 
 
+In this case the kube-apiserver will still be aware of the static pod has been created later on, as after kubelet create the pod, it also creates a mirror object in the kube-apiserver. so if you use **kubectl get pods**, what you see here is just a read-only mirror of the pod, which means you can view details of the pod but you cannot edit or delete it like the usual pods ( you can only delete them by modifying the files from the nodes manifest folder ).
+
+Use case of static pod is to deploy control plane components itself as pods on a node, start by installing kubelet on all the master node then create pod definition files that uses docker images of the various control plane components such as the api server, controller, etcd etc. Place the definition files in the designated manifests folder and kubelet takes care of deploying the control plane components themselves as pods on the cluster. This way you don't have to download the binaries configure services or worry about if these services crash if any of these services were to crash since it's a static pod it will automatically be restarted by kubelet. That is how the **kubeadm** tool set up the cluster. 
+
+You can use the following command to set up the pods bootstrapped by kubeadm : 
+
+      kubectl get pods -n kube-system
+
+<img src="screenshots/Static pod.PNG" alt="static pod" width="800px"/>
 
 ## Play 2 : Pod Design - Multi-container Pods
 
@@ -118,7 +127,7 @@ Delete the replicaset is the following command:
 
 Previsouly, we've talked about with the help of replicasets and deployments we make sure multiple copies of our applications are made available across various different worker nodes. Daemonsets like replicaset but it runs one copye your pod on each node in your cluster. Whenever a new node is added to the cluster a replica of the pod is automatically added to that node and when a node is removed the pod is automatically removed. 
 
-The key thing to define daemonset is it ensures that one copy of the pod is always present in all nodes in the cluster. 
+The key thing to define daemonset is it ensures that one copy of the pod is always present in all nodes in the cluster. ( Ignored by kube-scheduler )
 
 DaemonSets do not use a scheduler to deploy pods. When you need to run 1 replicas and exactly 1 on each node, daemonset is a perfect match.  As nodes are removed from the cluster, those Pods are garbage collected.
 
@@ -128,6 +137,7 @@ The main use cases of daemonsets is that you can deploy the following component 
 - Logs collector 
 
 Then you don't have to worry about adding / removing monitoring agents from these nodes when there are changes in your cluster. For example, the kube-proxy can be deployed as a daemonset in your cluster and another example is for networking. Networking solutions like WeaveNet requires an agent to be deployed on each node in the cluster. 
+
 
 ```yaml
 apiVersion: apps/v1
