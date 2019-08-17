@@ -2,7 +2,37 @@
 
 **Kubelet** is like a captain of your ship, it registers the node, and create pod in worker node and monitors nodes and pods on a timely basis. 
 
-## Play 1 : Pod Design - Multi-container Pods
+There two ways to create pod by Kubelet :
+
+- From static pod path ( which is known as the static pods )
+- Through an HTTP API endpoint which is kube-apiserver ( the pods from the api-server )
+
+## Play 1 : Static Pod
+
+The kubelet can manage a node independently, it can create pods ( but need API server to provide pod details ), the question here is how do we provide a pod definition file to the kubelet without a kube-api server ? 
+
+You can configure the kubelet to read the pod definition files from a directory on the server designated to store information of pods. Which is like the following : 
+
+      /etc/kubernetes/manifests
+
+Kubelet check this directory periodically reads these files and creates pods on the host. Not only does it create the pod it can ensure that the pod stays alive. If the application crashed, the kubelet attempts to restart it. If you make a change to any of the file within this directory, the kubelet recreates the pod for those changes to take effect. If you remove a file from this directory the pod is deleted automatically. So these pods that are created by the kubelet on its own without the intervention from the API server or the rest of the Kubernetes cluster components are known as **static pods**. Remember this is only apply for **Pod**, no daemonsets and replicatsets as those need to interact with other parts of Kubernetes cluster.
+
+This path can be configured as the following in **kubelet.service**: 
+
+      --pod-manifest-path=/etc/Kubernetes/manifests
+
+Or using the **--config** option :
+
+      --config=kubeconfig.yaml
+
+then in **kubeconfig.yaml** file :
+
+      staticPodPath : /etc/kubernetes/manifests
+
+Once the static pod has been created, you can use **docker ps** command to review it. The reason why not the kubectl command is we don't have the rest of the Kubernetes cluster. Kubectl utility works with kube-api server. 
+
+
+## Play 2 : Pod Design - Multi-container Pods
 
 In general, it is good to have a one-to-one relationship between container and pod. 
 
@@ -29,16 +59,12 @@ C:\Users\melqin\Documents\00 - GitHub\melonkube\screenshots
 
 <img src="screenshots/Multi-container process namespace.PNG" alt="multi-container-sharedstorage" width="800px"/>
 
-### Static Pod
-
-The kubelet can manage a node independently, it can create pods ( but need API server to provide pod details ), the question here is how do we provide a pod definition file to the kubelet without a kube-api server ? You can configure the kubelet to read the pod definition files from a directory on the server designated to store pod definition. Kubelet check this directory periodically reads these files and creates pods on the host. 
-
-
 ### Replication controller & Replicas Set
 
 Replication controller spans across multiple nodes in the cluster. It helps us balance the load across multiple pods on different nodes as well as scale our application when demand increases. 
 
 **ReplicaSet** is the new generation to help pods achieve higher availability. We can ensure we'll always have a certain number defined replicas at a time. The role of the replicaset is to monitor the pods and if any of them were to fail, deploy new ones. There could be 100s of other pods in the cluster running different applications. This is where labelling our pods during creation comes in handy. We could now provide these labels as a filter for replicaset. Under the selector section we use to match labels filter and provide the same label we used while creating the pods. 
+
 
 ```yaml
 apiVersion: apps/v1
@@ -135,7 +161,7 @@ Which also reminds us to check the details of daemonset by using :
      kubectl describe daemonsets montoring-daemon
 
 
-## Play 2 : Multi-container pod design pattern
+## Play 3 : Multi-container pod design pattern
 
 Three multi-container pod design pattern :
 - **sidecar** pattern uses a sidecar container that enhances the functionality of the main container. Example: A sidecar container that sinks files from a git repository to the file system of a web server container. Every two minutes checks for new version of these files. If the files have been updated, it pulls in the new files and pushes them into the file system of the main container, so they're automatically updated without even having to restart or redeploy that container.
@@ -170,7 +196,7 @@ After creating the pod, you can use kubectl command to check the status of pod t
 <img src="screenshots/multi-container.PNG" alt="multi-container" width="800px"/>
 
 
-## Play 3 : Manage namespaces
+## Play 4 : Manage namespaces
 
 Default namespaces created by Kubernetes : kube-system, default and kube-public.
 
@@ -222,7 +248,7 @@ You can then simply run the following command without the namespace option to li
     kubetl get pods
 
 
-## Play 4 : Jobs and CronJobs
+## Play 5 : Jobs and CronJobs
 
 Jobs can be used to reliably execute a workload until it completes. The job will create one or more pods. When the job is finished, the containers will exit and the pods will enter the **Completed** status. The example of using jobs is when we want to run a particular workload and just to make sure it runs once and succeeds.
 
@@ -309,7 +335,7 @@ You'll see you can virtualise the cron job has been executed :
 
 
 
-## Play 5 : Labels, Selectors, and Annotations
+## Play 6 : Labels, Selectors, and Annotations
 
 **Labels** are key-value pairs attached to Kubernetes objects, we can list them in metadata.labels section of an object descriptor. 
 
@@ -335,7 +361,7 @@ Example of chaining multiple selectors together using a **comma-delimited** list
 
 **Annotation** are similar to labels in that they can be used to store custom metadata about objects. However, **cannot** be used to select or group objects in Kubernetes.  We can attach annotations to objects using the metadata.annotations sector or the object descriptor
 
- ## Play 6 : Resource requirements
+ ## Play 7 : Resource requirements
 
  Kubernetes allows us to specify the resource requirements of a container in the pod spec. 
 
@@ -392,7 +418,7 @@ So if a pod tries to consume more memory than its limit constantly, the pod will
 
 
 
-## Play 7 : Manual Scheduling
+## Play 8 : Manual Scheduling
 
 You can constrain a Pod to only be able to run on particular Node(s) , or to prefer to run on particular nodes. There are several ways to do this, and the recommended approaches all use label selectors to make the selection. Generally such constraints are unnecessary, as the scheduler will automatically do a reasonable placement (e.g. spread your pods across nodes, not place the pod on a node with insufficient free resources, etc.) but there are some circumstances where you may want more control on a node where a pod lands, e.g. to ensure that a pod ends up on a machine with an SSD attached to it, or to co-locate pods from two different services that communicate a lot into the same availability zone.
  
