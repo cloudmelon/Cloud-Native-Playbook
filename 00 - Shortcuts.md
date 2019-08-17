@@ -45,6 +45,11 @@ Get everything :
 
     kubectl get all 
 
+List all the events in the current namespace : 
+
+    kubectl get events
+
+
 Display services:
 
      kubectl get services

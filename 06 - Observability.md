@@ -1,5 +1,19 @@
 # Playbook Part 6: Observability - Debug and troubleshootings
 
+As you may know, Kubernetes runs an agent on each node knowns as Kubelet, which is responsible for receiving instructions from the Kubernetes API master server and running pods on the nodes. The kubelet also contains a subcomponent know as a **cAdvisor** ( Container Advisor), it is responsiible for retrieving performance metrics from pods and exposing them through the kubelet API to make the metrics available for the metrics server. 
+
+## Play 0. Cluster Monitoring
+
+You can have one Metrics server per kubernetes cluster, the metrics server retrives from each of the kubernetes nodes and pods, aggregates and stores in memory. Note that the metrics server is only an in-memory monitoring solution and does not store the metrics on the desk and as a result you cannot see historical performance data. 
+
+### Cluster monitoring solutions :
+
+- Prometheus
+- Elastic Stack
+- DataDog
+- Dynatrace
+
+
 ## Play 1. Liveness and Readiness Probes :
 
 **Probes** allows you to customize how Kubernetes determines the status of your containers. 
