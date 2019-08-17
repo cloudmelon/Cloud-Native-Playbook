@@ -88,9 +88,51 @@ Delete the replicaset is the following command:
 
    kubectl delete replicaset melon-rs
 
-### DaemonSet
+### Daemon Sets
+
+Previsouly, we've talked about with the help of replicasets and deployments we make sure multiple copies of our applications are made available across various different worker nodes. Daemonsets like replicaset but it runs one copye your pod on each node in your cluster. Whenever a new node is added to the cluster a replica of the pod is automatically added to that node and when a node is removed the pod is automatically removed. 
+
+The key thing to define daemonset is it ensures that one copy of the pod is always present in all nodes in the cluster. 
+
 DaemonSets do not use a scheduler to deploy pods. When you need to run 1 replicas and exactly 1 on each node, daemonset is a perfect match.  As nodes are removed from the cluster, those Pods are garbage collected.
 
+The main use cases of daemonsets is that you can deploy the following component to monitor your cluster better : 
+
+- Monitoring agent 
+- Logs collector 
+
+Then you don't have to worry about adding / removing monitoring agents from these nodes when there are changes in your cluster. For example, the kube-proxy can be deployed as a daemonset in your cluster and another example is for networking. Networking solutions like WeaveNet requires an agent to be deployed on each node in the cluster. 
+
+```yaml
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: monitoring-daemon
+spec:
+  selector:
+    matchLabels:
+      name: monitoring-agent
+  template:
+    metadata:
+      labels:
+        name: monitoring-agent
+    spec:
+      containers:
+      - name: monitoring-agent
+        image: monitoring-agent
+  ```    
+      
+To check daemonset has been created use the following : 
+
+     kubectl get daemonsets
+
+It also means we can simplify the command like the following : 
+
+     kubectl get ds 
+
+Which also reminds us to check the details of daemonset by using :
+
+     kubectl describe daemonsets montoring-daemon
 
 
 ## Play 2 : Multi-container pod design pattern
@@ -267,9 +309,9 @@ You'll see you can virtualise the cron job has been executed :
 
 
 
- ## Play 5 : Labels, Selectors, and Annotations
+## Play 5 : Labels, Selectors, and Annotations
 
- **Labels** are key-value pairs attached to Kubernetes objects, we can list them in metadata.labels section of an object descriptor. 
+**Labels** are key-value pairs attached to Kubernetes objects, we can list them in metadata.labels section of an object descriptor. 
 
 **Selectors** are used for identifying and selecting a group of objects using their labels. 
 
@@ -291,7 +333,7 @@ Example of chaining multiple selectors together using a **comma-delimited** list
 
       kubectl get pods -l app=myapp.environment=production 
 
-**Annotation** are similar to labels in that they can be used to store custom metatdata about objects. However, **cannot** be used to select or group objects in Kubernetes.  We can attach annotations to objects using the metadata.annotations sector or the object descriptor
+**Annotation** are similar to labels in that they can be used to store custom metadata about objects. However, **cannot** be used to select or group objects in Kubernetes.  We can attach annotations to objects using the metadata.annotations sector or the object descriptor
 
  ## Play 6 : Resource requirements
 
@@ -333,7 +375,7 @@ So what happens when a pod tries to exceed resources beyond its specified limit 
 - However, it can use more memory resource than its limit
 So if a pod tries to consume more memory than its limit constantly, the pod will be terminated.
 
-**Resource quota** provides constraints that limit aggregate resource consumption per namespace
+**Resource quota** provides constraints that limit aggregate resource consumption per namespace.
 
  ```yaml
   apiVersion: v1
@@ -368,5 +410,7 @@ spec:
   ```
 
   Ref : https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+
+  The way that we could set the nodeName property on the pod to bypass the scheduler and get the pod placed on a node directly in the specification before it is creatd and when they are created, they automatically land on the respective nodes. So that's how it used to be until Kubernetes version **v1.12**. From v.12 onwards, such as daemonset uses the default scheduler and **node affinity rules** to schedule pods on nodes. 
 
 

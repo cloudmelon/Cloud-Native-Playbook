@@ -15,12 +15,6 @@ This repostitory recap all useful kubectl commands and explainations for core co
 
 By cloudmelon
 
-## More details on my blog : 
-
-Please go to my blog cloud-melon.com to get more details about how to implement this solution and more about Microsoft Azure ( ref link : https://cloud-melon.com )
-
-Feel free to reach out to my twitter **@MelonyQ** for more details ( https://twitter.com/MelonyQ ). 
-
 
 ## Kubernetes Useful references : 
 
@@ -40,3 +34,10 @@ Feel free to reach out to my twitter **@MelonyQ** for more details ( https://twi
 - AKS Release notes: https://aka.ms/aks/releasenotes
 - AKS Public roadmap: http://aka.ms/aks/roadmap
 - AKS Known-issues: https://aka.ms/aks/knownissues
+
+
+## More details on my blog : 
+
+Please go to my blog cloud-melon.com to get more details about how to implement this solution and more about Microsoft Azure ( ref link : https://cloud-melon.com )
+
+Feel free to reach out to my twitter **@MelonyQ** for more details ( https://twitter.com/MelonyQ ). 
