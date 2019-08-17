@@ -126,4 +126,35 @@ Add liverness probe :
 
 Then redeploy it using Kubectl apply the target spec. 
 
+
+### Check Controlplane services
+
+Using the following command to check master node :
+
+      service kube-apiserver status
     
+      service kube-controller-manager status
+
+      service kube-scheduler status
+
+
+Also using the following command to check worker node : 
+
+      service kubelet status 
+
+      service kube-proxy status
+
+
+
+### Check service logs : 
+
+Using the command to check logs 
+
+      kubectl logs kube-apiserver-master -n kube-system
+
+
+You can also use journalctl utility to check the logs :
+
+      sudo journactl -u kube-apiserver
+
+      

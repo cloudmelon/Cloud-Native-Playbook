@@ -1,6 +1,6 @@
 # Playbook Part 3 : Networking
 
-### Play 1 : Network Policy 
+## Play 1 : Network Policy 
 
 By default : all pods in the cluster can communicate with any other pod, and reach out to any available IP. This accomplished by deploying a pod networking solution to the cluster. A pod network is an internal virtual network that spans across all the nodes in the cluster to which all the pods connect to. But there is no guarantee that the IPs will always remain the same. 
 
@@ -102,7 +102,7 @@ There are multiple types of selectors:
 - **ipBlock** specifies a CIDR range of IPs that will match the rule. This is mostly used for traffic from/to outside the cluster. You can also specify exceptions to the reange using except. 
 
 
-### Play 2 : Kube-DNS :
+## Play 2 : Kube-DNS :
 
 In the same namespaces, web pod can connect the db by using the db service directly. However if this web pod wants to connect to the db service in another namespace, if need to refer something like below :
 mysql.connect("db-service.dev.svc.cluster.local"), this domain refers to :
@@ -157,6 +157,10 @@ Name:      nginx
 Address 1: 100.67.79.160 nginx.default.svc.cluster.local
 ```
 
+## Play 3 : CoreDNS
 
 
 
+https://github.com/kubernetes/dns/blob/master/docs/specification.md
+
+https://coredns.io/plugins/kubernetes/
