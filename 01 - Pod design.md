@@ -1,4 +1,4 @@
-# Playbook Part 1 : Pods design
+# Playbook Part 1 : Pod design
 
 **Kubelet** is like a captain of your ship, it registers the node, and create pod in worker node and monitors nodes and pods on a timely basis. 
 
@@ -31,7 +31,7 @@ then in **kubeconfig.yaml** file :
 
 Once the static pod has been created, you can use **docker ps** command to review it. The reason why not the kubectl command is we don't have the rest of the Kubernetes cluster. Kubectl utility works with kube-api server. 
 
-In this case the kube-apiserver will still be aware of the static pod has been created later on, as after kubelet create the pod, it also creates a mirror object in the kube-apiserver. so if you use **kubectl get pods**, what you see here is just a read-only mirror of the pod, which means you can view details of the pod but you cannot edit or delete it like the usual pods ( you can only delete them by modifying the files from the nodes manifest folder ).
+In this case the kube-apiserver will still be aware of the static pod has been created later on, as after kubelet create the pod, it also creates a mirror object in the kube-apiserver. so if you use **kubectl get pods** ( append the node name though when you check it ), what you see here is just a read-only mirror of the pod, which means you can view details of the pod but you cannot edit or delete it like the usual pods ( you can only delete them by modifying the files from the nodes manifest folder ).
 
 Use case of static pod is to deploy control plane components itself as pods on a node, start by installing kubelet on all the master node then create pod definition files that uses docker images of the various control plane components such as the api server, controller, etcd etc. Place the definition files in the designated manifests folder and kubelet takes care of deploying the control plane components themselves as pods on the cluster. This way you don't have to download the binaries configure services or worry about if these services crash if any of these services were to crash since it's a static pod it will automatically be restarted by kubelet. That is how the **kubeadm** tool set up the cluster. 
 
