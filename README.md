@@ -3,7 +3,7 @@
 This repostitory recap all useful kubectl commands and explainations for core concepts and API primitives of Kubernetes. 
 
 - [00 - Shortcuts](https://github.com/cloudmelon/melonkube/blob/master/00%20-%20Shortcuts.md)
-- [01 - Pods design](https://github.com/cloudmelon/melonkube/blob/master/01%20-%20Pods%20design.md)
+- [01 - Pod design](https://github.com/cloudmelon/melonkube/blob/master/01%20-%20Pod%20design.md)
 - [02 - Rolling updates & rollbacks](https://github.com/cloudmelon/melonkube/blob/master/02%20-%20Rolling%20updates%20and%20rollbacks.md)
 - [03 - Networking](https://github.com/cloudmelon/melonkube/blob/master/03%20-%20Networking.md)
 - [04 - ETCD](https://github.com/cloudmelon/melonkube/blob/master/04%20-%20ETCD.md)
