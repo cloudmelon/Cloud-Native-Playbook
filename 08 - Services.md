@@ -81,3 +81,17 @@ Using the following command to check the endpoint of the service :
 It can also be like the following : 
 
     kubectl get ep
+
+
+Lookup service within the cluster using the following command : 
+
+    k run --generator=run-pod/v1 test-nslookup --image=busybox:1.28 --rm -it -- nslookup melon-service
+
+
+Specifically if you want to look up pod DNS : 
+
+    k get pod melon-pod -o wide 
+
+After getting its IP address, please replace the '.' by '-', then using the following command : 
+
+    k run --generator=run-pod/v1 test-nslookup --image=busybox:1.28 --rm -it -- nslookup 10-44-0-22.default.pod

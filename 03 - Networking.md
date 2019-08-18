@@ -1,5 +1,7 @@
 # Playbook Part 3 : Networking
 
+Kubernetes creates docker containers on the non network first, it then invokes the configured CNI plugins who takes care of the rest of the configuration.
+
 ## Play 1 : Network Policy 
 
 By default : all pods in the cluster can communicate with any other pod, and reach out to any available IP. This accomplished by deploying a pod networking solution to the cluster. A pod network is an internal virtual network that spans across all the nodes in the cluster to which all the pods connect to. But there is no guarantee that the IPs will always remain the same. 
