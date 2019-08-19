@@ -77,6 +77,10 @@ Other useful command about query, edit, and delete deployment :
 
     kubectl delete deployment melon-deploy
 
+Addtionally, you can also use **kubectl patch** to update an API object in place. An example is like the following : 
+
+    kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
+
 ## Play 2 : Rolling updates
 
 **Rolling updates** provide a way to update a deployment to a new container version by gradually updating replicas so that there is no downtime 
