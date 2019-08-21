@@ -203,6 +203,13 @@ Which also reminds us to check the details of daemonset by using :
      kubectl describe daemonsets montoring-daemon
 
 
+### Stateful Set 
+
+Check the stateful sets in Kubernetes : 
+
+    kubectl get sts 
+
+
 ## Play 3 : Multi-container pod design pattern
 
 Three multi-container pod design pattern :
