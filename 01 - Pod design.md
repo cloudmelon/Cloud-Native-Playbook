@@ -94,7 +94,7 @@ A container can interact with one another in three ways :
 
 - Shared **Storage Volumes**. We can mount the same volume to two different containers so that they can both interact with the same files so you could have one container outputting files to the volume and the other container reading them or you could have both of them reading and writing files to that same volume. 
 
-C:\Users\melqin\Documents\00 - GitHub\melonkube\screenshots
+<img src="screenshots/Multi-container storage.PNG" alt="multi-container-sharednetwork" width="800px"/>
 
 - Shared **Process Namespace**. Essentially what this does is it allows the two containers to signal one another's processes. In order to implement that, you have to add an attribute to your pod back called **shareProcessNamespace** and set that to **true**. Once that is set to true, your containers can actually interact directly with one another's processes using a shared process namespace.
 
