@@ -4,7 +4,7 @@ Kubernetes creates docker containers on the non network first, it then invokes t
 
 ## Play 1 : Network Policy 
 
-By default : all pods in the cluster can communicate with any other pod, and reach out to any available IP. This accomplished by deploying a pod networking solution to the cluster. A pod network is an internal virtual network that spans across all the nodes in the cluster to which all the pods connect to. But there is no guarantee that the IPs will always remain the same. 
+By default : all pods in the cluster can communicate with any other pods within Kubernetes cluster, and reach out to any available IP. This accomplished by deploying a pod networking solution to the cluster. A pod network is an internal virtual network that spans across all the nodes in the cluster to which all the pods connect to. But there is no guarantee that the IPs will always remain the same. 
 
 Imagine that we have a web application and want to access the database. Here is also the reason why the better way for the web application to access the database is using a service. If we create a service, it can expose the database application across the cluster from any not. 
 
