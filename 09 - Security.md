@@ -35,7 +35,7 @@ You can access the cluster through kubectl tool or the API directly, all of thes
 <img src="screenshots/Communication.PNG" alt="communication" width="800px"/>
 
 
-### Transport Layer Security ( TLS ) Basics 
+#### Transport Layer Security ( TLS ) Basics 
 
 A certificate is used to gurantee trust between two parties during a transaction. For example, when a user tries to access a web server, TLS certificates ensure that the communication between the user and the server is encrypted and the server is who it says it is. 
 
@@ -45,7 +45,7 @@ The hacker sniffing the network might get the data after all, but they couldn't 
 
 Instead of using a single key to encrypt and decrypt data symmetric encryption uses a pair of keys, a private key and a public key well they're private and public keys. No matter what is locked using the public key, it can only be unlocked by the private key. 
 
-Another example is you want to access a server via SSH, you can use **ssh-keygen** command to generate a private key (id_rsa) and a public key ( id_rsa.pub ), you can add an entry to your server usually located at **~ /.ssh/authorized_keys** file ( so always remember to use command : cat ~ /.ssh/authorized_keys then you can check the rsa key which is something like ssh-rsa assdfdfdsfdfxx...super...longs...tring...xxxxxx usersuper007). You can see the anyone can attempt to break through the public key but as long as no one gets their hands on your private key which is safe with you on your laptop, no one can gain access to the server. When you try to SSH you specify the location of your private key in your SSH command. 
+Another example is you want to access a server via SSH, you can use **ssh-keygen** command to generate a private key (id_rsa) and a public key ( id_rsa.pub ), you can add an entry to your server usually located at ~ /.ssh/authorized_keys file ( so always remember to use command :**cat ~ /.ssh/authorized_keys** then you can check the rsa key which is something like ssh-rsa assdfdfdsfdfxx...super...longs...tring...xxxxxx usersuper007). You can see the anyone can attempt to break through the public key but as long as no one gets their hands on your private key which is safe with you on your laptop, no one can gain access to the server. When you try to SSH you specify the location of your private key in your SSH command. 
 
 #### What is a certificate ?
 
