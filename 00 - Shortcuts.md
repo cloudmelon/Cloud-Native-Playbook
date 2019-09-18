@@ -31,7 +31,10 @@ Set up alias :
 Set up auto-completion : 
 
     echo "source <(kubectl completion bash)" >> ~/.bashrc
+    
+Set up auto-completion for alias : 
 
+    complete -F __start_kubectl k
 
 Display nodes:
 
