@@ -26,6 +26,14 @@ Work node :
 - Kubelet requests port 10250 open
 - The work nodes expose services for extenral access on 30000 to 32767
 
+You can find the details on official documentation : https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#check-required-ports
+
+Be careful the network both in cluster and pod level : 
+- Every Pod should have a unique IP address
+- Every Pod should able to communicate with other pods in the same node and other nodes without NAT
+
+As long as we can implement a solution that takes care of automatically assigning IP addresses and establish connectivity between the pods in a node as well as pods on different nodes. 
+
 
 
 ## Play 1 : Network Policy 
