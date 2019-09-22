@@ -2,6 +2,32 @@
 
 Kubernetes creates docker containers on the non network first, it then invokes the configured CNI plugins who takes care of the rest of the configuration.
 
+## Play 0 : the Container Network Interface
+
+### 1st Glance at CNI
+
+**CNI (Container Network Interface)**, a Cloud Native Computing Foundation project, consists of a specification and libraries for writing plugins to configure network interfaces in Linux containers, along with a number of supported plugins. CNI concerns itself only with network connectivity of containers and removing allocated resources when the container is deleted. 
+
+You can find more on Github : https://github.com/containernetworking/cni
+
+CNI comes with a set of supported plugins already. Such as bridge, VLAN, IPVLAN, MACVLAN, as well as IPAM plugins like host-local and dhcp. Other plugins available from third party origanisations such as weave, flannel, cilium, VMWare NSX, Calico, Infobox etc has implemented CNI standards. However Docker does not implement CNI, because it has its won set of standards known as CNM which stands for **Container Network Model** which is another standard that aims at solving container networking challenges similar to CNI but with some differences.  It is also the reason why those plugins do not natively integrate with Docker, but you can work out them, it like Kubernetes does : 
+- Create Docker on the none network
+- It then invokes the configured CNI plugins who takes care of the rest of the configuration 
+
+### CNI in Kubernetes
+
+Master : 
+- Kube-api requests port 6443 open
+- Kube-scheduler requests port 10251 open
+- Kube-controller-manager request port 10252 open 
+- etcd requests port 2380 open 
+
+Work node : 
+- Kubelet requests port 10250 open
+- The work nodes expose services for extenral access on 30000 to 32767
+
+
+
 ## Play 1 : Network Policy 
 
 By default : all pods in the cluster can communicate with any other pods within Kubernetes cluster, and reach out to any available IP. This accomplished by deploying a pod networking solution to the cluster. A pod network is an internal virtual network that spans across all the nodes in the cluster to which all the pods connect to. But there is no guarantee that the IPs will always remain the same. 
