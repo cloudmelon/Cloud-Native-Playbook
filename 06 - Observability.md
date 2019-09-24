@@ -157,4 +157,42 @@ You can also use journalctl utility to check the logs :
 
       sudo journactl -u kube-apiserver
 
-      
+### Check work node failure 
+
+Using command to check node status  : 
+
+     kubectl get nodes 
+
+Then dive into more details using the following : 
+
+     kubectl describe node melon-worknode
+
+Each node has a set of conditions that can point us in a direction as to why a node might have failed. Depending on the status they are either set to **true** or **false** or **unknown** which could be : 
+- Out of Disk ( true )
+- Memory Pressure ( true )
+- Disk Pressure ( true ) refers to when the disk capacity is low. 
+- PID Pressure ( true ) refers to too many processes
+- Ready ( true ) means the node whole as healthy or not
+
+When it set to unknown which means may cause a loss of node ( from the perspective of master node ), you may need to check the last Heart Beat time field to find out the time when the node might have crashed. In such cases, proceed to checking the status of the node itself, if it crashed bring it back up. 
+
+Check for possible CPU, Memory and Disk space on the node by using the following command : 
+
+      top
+
+      df -h 
+
+And check the state of kubelet using the following : 
+
+      service kubelet status
+
+Check the kubelet logs for possible issues : 
+
+      sudo journalctl -u kubelet
+
+Check the kubelet certificates. Ensure they are not expired and that they are part of the right group, and that certificate are issued by the right CA: 
+
+      openssl x509 -in /var/lib/kubelet/worker-1.crt -text
+
+
+
