@@ -139,7 +139,21 @@ There are multiple types of selectors:
 - **ipBlock** specifies a CIDR range of IPs that will match the rule. This is mostly used for traffic from/to outside the cluster. You can also specify exceptions to the reange using except. 
 
 
-## Play 2 : Kube-DNS :
+## Play 2 :  DNS in Kubernetes 
+
+CoreDNS in Kubernetes
+From the version 1.12 the recommended DNS Server is CoreDNS. CoreDNS uses a file named Corefile located at /etc/coredns, within this file you have a number of plugins configured. 
+
+For the pod remember we talked about a record being created for each Pod by converting their IPs into a dashed format that's disabled by default. It is forwarded to the nameserver specified in the coredns pods /etc/resolv.conf file, which is set to use the nameserver from the Kubernetes node.  Also note that this core file is passed into the pods has a configMap object, you can modify it by using the following command : 
+
+     kubectl get configmap -n kube-system
+
+
+
+
+
+
+Kube-DNS :
 
 In the same namespaces, web pod can connect the db by using the db service directly. However if this web pod wants to connect to the db service in another namespace, if need to refer something like below :
 mysql.connect("db-service.dev.svc.cluster.local"), this domain refers to :
