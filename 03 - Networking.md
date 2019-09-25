@@ -142,75 +142,47 @@ There are multiple types of selectors:
 ## Play 2 :  DNS in Kubernetes 
 
 CoreDNS in Kubernetes
-From the version 1.12 the recommended DNS Server is CoreDNS. CoreDNS uses a file named Corefile located at /etc/coredns, within this file you have a number of plugins configured. 
+From the version 1.12 the recommended DNS Server is CoreDNS. CoreDNS uses a file named Corefile located at /etc/coredns ( the full path is /etc/coredns/Corefile ), within this file you have a number of plugins configured. 
 
 For the pod remember we talked about a record being created for each Pod by converting their IPs into a dashed format that's disabled by default. It is forwarded to the nameserver specified in the coredns pods /etc/resolv.conf file, which is set to use the nameserver from the Kubernetes node.  Also note that this core file is passed into the pods has a configMap object, you can modify it by using the following command : 
 
      kubectl get configmap -n kube-system
 
+Every DNS records in CoreDNS falls in **cluster.local** domain, it usually looks like :
+
+For the service :
+     servicename.namespace.svc.cluster.local
 
 
+For the pod is to convert their IPs into a dash format. 
+
+When we deployed CoreDNS solution, it also creates a service to make it available to other components within the cluster which is kube-dns. The IP address of this service is configured as name server on pods
+
+    kubectl get svc kube-dns -n kube-system
+
+The DNS configurations on Pods are done by Kubernetes automatically when the pods are created. Want to guess which Kubernetes component is responsible for that ? The kubelet. You can check the following to find the IP of cluster DNS server and domain in it : 
+      
+    cat /var/lib/kubelet/config.yaml
+
+Once the pods are configured with the right nameserver, you can now resolve other pods and services.  
+
+Checking if DNS is actually working:
+
+    host webservice 
+
+It will return the full qualified domain name of the web service which is happen to have the following output :
+
+    web-service.default.svc.cluster.local has address xxx.xxx.xxx.xxx
 
 
+    kubectl exec -ti busybox -- nslookup nginx
 
-Kube-DNS :
+So the resolv.conf file helps you resolve the naming even though you didn't ask for full name, as this file has a search entry which is set to default.svc.cluster.local, as well as svc.cluster.local and cluster.local. This allows to find any name for the **service**, not for the pod though. For the Pod you'll still need the FQDN.  
 
-In the same namespaces, web pod can connect the db by using the db service directly. However if this web pod wants to connect to the db service in another namespace, if need to refer something like below :
-mysql.connect("db-service.dev.svc.cluster.local"), this domain refers to :
-
-- service name: db-service
-- namespace : dev
-- service : svc ( subdomain )
-- cluster.local is the default domain name of Kubernetes cluster 
+    kubectl exec busybox cat /etc/resolv.conf
 
 
-
-Kube-dns is a (kube-system) pod containing three container instances: kubedns, dnsmasq, and sidecar. This service is instrumental for kubernetes to function. Cluster-info shows the primary dns endpoint.
-```
-[root@1716bb9df96b ~]# kubectl cluster-info
-Kubernetes master is running at https://api.k8s.myhost.net
-KubeDNS is running at https://api.k8s.myhost.net/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
-```
-Verify another way:
-```
-kubectl get pods --namespace=kube-system -l k8s-app=kube-dns
-```
-To have a look at the logs of each container do this:
-```
-kubectl logs kube-dns-xxxx -n kube-system -c kubedns
-NAME                        READY     STATUS    RESTARTS   AGE
-kube-dns-7f56f9f8c7-9xcqt   3/3       Running   0          1h
-kube-dns-7f56f9f8c7-c426r   3/3       Running   0          1h
-```
-You specify the -c to grab the logs of a specfic container instance inside the pod.
-
-### What is Kubernetes DNS
-The kube-dns pod basically watches the API server for Pods and Services that spin up. It uses SkyDNS to then serve up queries to those pods an services. It also uses DNSMasq to caching these requests. When a pods spins up, the kube-dns overrides their local /etc/resolv.conf files so that they point only to the proxy. 
-
-## Investigating kube-dns pod and resolv.conf
-```
-[root@1716bb9df96b ~]# kubectl get svc kube-dns -n kube-system
-NAME       TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)         AGE
-kube-dns   ClusterIP   100.64.0.10   <none>        53/UDP,53/TCP   52m
-[root@1716bb9df96b ~]# kubectl exec busybox cat /etc/resolv.conf
-nameserver 100.64.0.10
-search default.svc.cluster.local svc.cluster.local cluster.local google.internal
-options ndots:5
-```
-### Checking if DNS is actually working:
-Assumes the existence of basic nginx and busybox deployments.
-```
-kubectl exec -ti busybox -- nslookup nginx
-Server:    100.64.0.10
-Address 1: 100.64.0.10 kube-dns.kube-system.svc.cluster.local
-
-Name:      nginx
-Address 1: 100.67.79.160 nginx.default.svc.cluster.local
-```
-
-## Play 3 : CoreDNS
-
-
+### References 
 
 https://github.com/kubernetes/dns/blob/master/docs/specification.md
 
