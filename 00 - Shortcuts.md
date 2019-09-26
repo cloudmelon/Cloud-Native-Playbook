@@ -117,3 +117,9 @@ Get pod spec to a folder / file location :
 Using the following bash scripts : 
 
     while true; do curl http://<ip-address-of-the-service>; done
+
+### Play 5. Delete all pods 
+
+Delete all pods in one of namespaces
+
+    k delete pods --all -n melonspace

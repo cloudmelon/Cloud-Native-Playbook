@@ -187,3 +187,13 @@ So the resolv.conf file helps you resolve the naming even though you didn't ask 
 https://github.com/kubernetes/dns/blob/master/docs/specification.md
 
 https://coredns.io/plugins/kubernetes/
+
+
+## Play 3 :  Ingress in Kubernetes
+
+
+
+
+Reverse proxy product :
+
+Nginx, HAProxy, Treafik
