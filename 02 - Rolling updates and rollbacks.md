@@ -202,3 +202,49 @@ Now remember, the pods that were moved to the other nodes don't automatically fa
 There is another command simply mark the node unschedulable, unlike drain, it does not terminate or move the pods on an existing node :
 
     kubectl cordon node-super-007
+
+## Play 5: Taints and Tolerations 
+
+Taints on the node and toleration on the pods. 
+
+You can use the following command to taint the node :
+
+    kubectl taint nodes node-name key=value:taint-effect
+
+Example is as the following : 
+
+    kubectl taint nodes melonnode app=melonapp:NoSchedule
+
+
+From the point of view of pods, they might be :
+- NoSchedule
+- PreferNoSchedule
+- NoExecute
+
+Then translate it into pod yaml defnition file is as the following :
+
+ ```yaml
+   apiVersion: v1
+   kind: Pod
+   metadata:
+    name: melon-ns-pod
+    namespace: melon-ns
+    labels:
+      app: melonapp
+   spec:
+    containers:
+    - name: melonapp-container
+      image: busybox
+      command: ['sh', '-c', 'echo Salut K8S! && sleep 3600']
+    tolerations:
+    - key: "app"
+      operator: "Equal"
+      value: "melonapp"
+      effect: "NoSchedule"
+ ```
+
+When Kubernetes cluster first set up, there's a taint set up automatically for the master, the scheduler's not going to schedule any pods to the master which is refer to as a best practice so no workloads will be deployed in the master. 
+
+To untaint a node ( here's not a good practice but just to show how to untaint master node ) : 
+
+    kubectl taint nodes master node-role.kubernetes.io/master:NoSchedule-
