@@ -198,7 +198,7 @@ Remember a Kubernetes cluster does not come with an Ingress Controller by defaul
 - URL-based routing such as different pages for the same web application ( example : www.cloud-melon.com/contacts and www.cloud-melon.com/aboutme )
 - Based on domain name itself to route specific users ( such as blog.cloud-melon.com and code.cloud-melon.com )
 
-All those will fully depend on your configuration. 
+All those will fully depend on your backend configuration of the ingress controller. 
 
 
 ### NGINX as Ingress Controller in its simplest form
