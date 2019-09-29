@@ -225,6 +225,46 @@ In addtion, you need some other object to help you succeed :
 - A service to expose the ingress controller is also needed.
 
 
+A minimun ingress example is as the following : 
+
+```yaml
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: test-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /testpath
+        backend:
+          serviceName: test
+          servicePort: 80
+ ```
+
+Please refer to : https://kubernetes.io/docs/concepts/services-networking/ingress/#what-is-ingress
 
 
+Specifically, when you need to rewrite an ingress :
 
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: melon-ingress
+  namespace: melon-space
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /contacts
+        backend:
+          serviceName: back-service
+          servicePort: 8080
+ ```
+
+Refer to : https://kubernetes.github.io/ingress-nginx/examples/rewrite/
