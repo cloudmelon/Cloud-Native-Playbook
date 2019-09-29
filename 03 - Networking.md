@@ -193,12 +193,23 @@ https://coredns.io/plugins/kubernetes/
 
 Ingress Controller : Reverse proxy product such as Nginx, HAProxy, Treafik, Contour etc deployed in Kubernetes cluster and configure them to route traffic to other services which involved defining URL Routes, SSL certificate, load balancing etc ( a set of rules as Ingress resources ).  Service mesh solution such as Linkerd and Istio also providing capabilities similarily to Ingress Controller. 
 
-Remember a Kubernetes cluster does not come with an Ingress Controller by default. An Ingress Controller will be able to do things like the following : 
+Remember a Kubernetes cluster does not come with an Ingress Controller by default. You can check out the following page to get more ideas : 
+
+https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/
+
+
+
+With Ingress object and define a set of rules. An Ingress Controller will be able to do things like the following : 
 - Route users to a simple application
 - URL-based routing such as different pages for the same web application ( example : www.cloud-melon.com/contacts and www.cloud-melon.com/aboutme )
 - Based on domain name itself to route specific users ( such as blog.cloud-melon.com and code.cloud-melon.com )
 
 All those will fully depend on your backend configuration of the ingress controller. 
+
+You can check the examples of ingress resources and rules from
+ the following link : 
+
+https://kubernetes.io/docs/concepts/services-networking/ingress/
 
 
 ### NGINX as Ingress Controller in its simplest form
@@ -212,6 +223,7 @@ In addtion, you need some other object to help you succeed :
 - As best practice, if you configure a ConfigMap object to pass it in if you need to change any configurations. 
 - A service account ( Auth ) with right set of permissions ( correct cluster role,  role and rolebindings ) are also needed as Ingress controller has some addtional build-in intelligence, which makes sense why it might need some addtional permission. 
 - A service to expose the ingress controller is also needed.
+
 
 
 
