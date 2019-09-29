@@ -247,7 +247,7 @@ spec:
 Please refer to : https://kubernetes.io/docs/concepts/services-networking/ingress/#what-is-ingress
 
 
-Specifically, when you need to rewrite an ingress :
+Specifically, when you need to rewrite an ingress ( for NGINX ) :
 
 ```yaml
 apiVersion: extensions/v1beta1
