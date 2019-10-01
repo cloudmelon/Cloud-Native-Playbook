@@ -163,13 +163,13 @@ If you want the image we're using, you can query it using :
 
 This query can be tested on a jsonpath emulator such as http://jsonpath.com/
 
+
 Translation by using kubectl utility is : 
 
     kubectl get pods -o=jsonpath='{.spec.containers[0].image}'
 
 
 We can also use a single command to get multiple output for example :
-
 
     kubectl get pods -o=jsonpath='{.spec.containers[0].image}{.spec.containers[0].name}'
 
@@ -204,8 +204,7 @@ To reproduct the previsous command you can use the following :
 ```
 
 To know more about JSON PATH with Kubectl, please check page : 
-
-    https://kubernetes.io/docs/reference/kubectl/jsonpath/
+ https://kubernetes.io/docs/reference/kubectl/jsonpath/
 
 
 Finally here are some queries might be not used that often : 
@@ -226,7 +225,7 @@ If you only want some items in the list. Always about quering the list quick way
     
   which stands for 
   
-    start:end:step
+    start : end : step
 
 - Always get the last item : 
 
