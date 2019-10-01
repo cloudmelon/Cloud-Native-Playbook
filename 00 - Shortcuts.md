@@ -218,3 +218,7 @@ Get the last 3 items : $[-3:]
 In the case it starts with a dictionary ( you might be more confortable to calle it as object if you're a JS developer ) then follow up with a list, you can also do the following :
 
     $.users[*].name
+
+About conditional query : 
+
+    $.status.containerStatuses[?(@.name == 'redis-container')].restartCount
