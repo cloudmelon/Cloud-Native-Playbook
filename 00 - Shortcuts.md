@@ -196,4 +196,21 @@ To reproduct the previsous command you can use the following :
     kubectl get nodes -o=custom-columns=NODE:.metadata.name ,CPU:.status.capacity.cpu
 
 
+Otherwise, if it starts with a list, you can use [*] represent it :
 
+    $[*].metadata.name 
+
+If you only want some items in the list :
+
+The begining 3 items for example : $[0:2]
+
+Wanna skip some items you can also specify steps : $[0:8:2] which stands for start:end:step
+
+Always get the last item : $[-1:0] start to the last and all the way to the end or $[-1:]
+
+Get the last 3 items : $[-3:]
+
+
+In the case it starts with a dictionary ( you might be more confortable to calle it as object if you're a JS developer ) then follow up with a list, you can also do the following :
+
+    $.users[*].name
