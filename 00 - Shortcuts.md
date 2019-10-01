@@ -219,26 +219,35 @@ If you only want some items in the list. Always about quering the list quick way
 
 - The begining 3 items for example : 
 
+```shell
     $[0:2]
+```
 
 - Wanna skip some items you can also specify steps : 
 
+```shell
     $[0:8:2]
-    
+ ```   
+
   which stands for : 0 is start line, 8 is the ending line, and 2 is the step
 
 - Always get the last item : 
 
+```shell
     $[-1:0] 
-    
+ ```   
+
 start to the last and all the way to the end or : 
 
+```shell
     $[-1:]
+ ```   
 
 - Get the last 3 items : 
 
+```shell
     $[-3:]
-
+ ```   
 
 In the case it starts with a dictionary ( you might be more confortable to calle it as object if you're a JS developer ) then follow up with a list, you can also do the following :
 
