@@ -123,3 +123,77 @@ Using the following bash scripts :
 Delete all pods in one of namespaces
 
     k delete pods --all -n melonspace
+
+
+### Play 6. Playing with Json Path
+
+To play with Json Path, firstly, you have to make sure the output of your command is JSON format, example like the following : 
+
+    kubectl get pods -o json 
+
+Then you can start to play the output with JSON Path query
+
+Initially there is a symbol '$' to query the root itam, with Kubectl utility they added it systematically. Just take a simple sample output : 
+
+```json
+{
+  "apiVersion": "v1",
+  "kind": "Pod",
+  "metadata": {
+    "name": "nginx-pod",
+    "namespace": "default"
+  },
+  "spec": {
+    "containers": [
+      {
+        "image": "nginx:alpine",
+        "name": "nginx"
+      }
+    ],
+    "nodeName": "node01"
+  }
+}
+```
+
+If you want the image we're using, you can query it using : 
+    
+    $.spec.containers[0].image
+
+This query can be tested on a jsonpath emulator such as http://jsonpath.com/
+
+Translation by using kubectl utility is : 
+
+    kubectl get pods -o=jsonpath='{.spec.containers[0].image}'
+
+
+We can also use a single command to get multiple output for example :
+
+
+    kubectl get pods -o=jsonpath='{.spec.containers[0].image}{.spec.containers[0].name}'
+
+
+There are also some predefined formatting options in here : 
+
+- New line : {"\n"}
+- Tab : {"\t"}
+
+
+Example here could be also like the following : 
+
+    kubectl get pods -o=jsonpath='{.spec.containers[0].image}{"\n"}{.spec.containers[0].name}'
+
+
+While using Kubectl, you can also use loops and Range which is pretty cool ( this is an example from somewhere, thanks ) : 
+
+    kubectl get pods -o=jsonpath='{range .items[*]}{.metadata.name} {"\t"} {.status.capacity.cpu} {"\n"}{end}'
+
+What about custom columns ? we can also use like the following : 
+
+    kubectl get nodes -o=custom-columns=meloncolumn:jsonpath
+
+To reproduct the previsous command you can use the following : 
+
+    kubectl get nodes -o=custom-columns=NODE:.metadata.name ,CPU:.status.capacity.cpu
+
+
+
