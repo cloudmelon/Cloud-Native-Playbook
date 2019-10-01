@@ -204,6 +204,7 @@ To reproduct the previsous command you can use the following :
 ```
 
 To know more about JSON PATH with Kubectl, please check page : 
+
  https://kubernetes.io/docs/reference/kubectl/jsonpath/
 
 
@@ -212,6 +213,7 @@ Finally here are some queries might be not used that often :
 If it starts with a list, you can use [*] represent it :
 
     $[*].metadata.name 
+
 
 If you only want some items in the list. Always about quering the list quick way here : 
 
@@ -223,9 +225,7 @@ If you only want some items in the list. Always about quering the list quick way
 
     $[0:8:2]
     
-  which stands for 
-  
-    start : end : step
+  which stands for : 0 is start line, 8 is the ending line, and 2 is the step
 
 - Always get the last item : 
 
