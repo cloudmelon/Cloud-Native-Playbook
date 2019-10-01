@@ -196,6 +196,10 @@ To reproduct the previsous command you can use the following :
     kubectl get nodes -o=custom-columns=NODE:.metadata.name ,CPU:.status.capacity.cpu
 
 
+To know more about JSON PATH with Kubectl, please check page : 
+https://kubernetes.io/docs/reference/kubectl/jsonpath/
+
+
 Otherwise, if it starts with a list, you can use [*] represent it :
 
     $[*].metadata.name 
