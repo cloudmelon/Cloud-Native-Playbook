@@ -156,8 +156,10 @@ Initially there is a symbol '$' to query the root itam, with Kubectl utility the
 ```
 
 If you want the image we're using, you can query it using : 
-    
+
+```shell
     $.spec.containers[0].image
+```
 
 This query can be tested on a jsonpath emulator such as http://jsonpath.com/
 
@@ -185,34 +187,42 @@ Example here could be also like the following :
 
 While using Kubectl, you can also use loops and Range which is pretty cool ( this is an example from somewhere, thanks ) : 
 
+```shell
     kubectl get pods -o=jsonpath='{range .items[*]}{.metadata.name} {"\t"} {.status.capacity.cpu} {"\n"}{end}'
+```
 
 What about custom columns ? we can also use like the following : 
 
+```shell
     kubectl get nodes -o=custom-columns=meloncolumn:jsonpath
+```
 
 To reproduct the previsous command you can use the following : 
 
+```shell
     kubectl get nodes -o=custom-columns=NODE:.metadata.name ,CPU:.status.capacity.cpu
-
+```
 
 To know more about JSON PATH with Kubectl, please check page : 
-https://kubernetes.io/docs/reference/kubectl/jsonpath/
+
+    https://kubernetes.io/docs/reference/kubectl/jsonpath/
 
 
-Otherwise, if it starts with a list, you can use [*] represent it :
+Finally here are some queries might be not used that often : 
+
+If it starts with a list, you can use [*] represent it :
 
     $[*].metadata.name 
 
-If you only want some items in the list :
+If you only want some items in the list. Always about quering the list quick way here : 
 
-The begining 3 items for example : $[0:2]
+- The begining 3 items for example : $[0:2]
 
-Wanna skip some items you can also specify steps : $[0:8:2] which stands for start:end:step
+- Wanna skip some items you can also specify steps : $[0:8:2] which stands for start:end:step
 
-Always get the last item : $[-1:0] start to the last and all the way to the end or $[-1:]
+- Always get the last item : $[-1:0] start to the last and all the way to the end or $[-1:]
 
-Get the last 3 items : $[-3:]
+- Get the last 3 items : $[-3:]
 
 
 In the case it starts with a dictionary ( you might be more confortable to calle it as object if you're a JS developer ) then follow up with a list, you can also do the following :
