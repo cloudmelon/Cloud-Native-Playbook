@@ -216,13 +216,29 @@ If it starts with a list, you can use [*] represent it :
 
 If you only want some items in the list. Always about quering the list quick way here : 
 
-- The begining 3 items for example : $[0:2]
+- The begining 3 items for example : 
 
-- Wanna skip some items you can also specify steps : $[0:8:2] which stands for start:end:step
+    $[0:2]
 
-- Always get the last item : $[-1:0] start to the last and all the way to the end or $[-1:]
+- Wanna skip some items you can also specify steps : 
 
-- Get the last 3 items : $[-3:]
+    $[0:8:2]
+    
+  which stands for 
+  
+    start:end:step
+
+- Always get the last item : 
+
+    $[-1:0] 
+    
+start to the last and all the way to the end or : 
+
+    $[-1:]
+
+- Get the last 3 items : 
+
+    $[-3:]
 
 
 In the case it starts with a dictionary ( you might be more confortable to calle it as object if you're a JS developer ) then follow up with a list, you can also do the following :
