@@ -71,7 +71,7 @@ is equal to :
 
 
 
-### Play 2. Add flags
+### Play 2. Add parametters ( Please use them in general context, don't limite yourself by pods or nodes )
 In all namespaces : 
 
     --all-namespaces  
@@ -103,6 +103,11 @@ Sort by capacity :
    
 as option. This will not create the resource, instead, tell you weather the resource can be created and if your command is right.
    
+Another useful parameter is :
+
+   -w 
+
+Usage like when you query a pod or a job, it will make your shell stop by. The advange is after you use kubectl utility to deploy a pod, in real-life, you'll still need to wait for a few secs or even more until your pods will be up and running, this parameter is to help you don't need to check it again and again. 
 
 ### Play 3. Write spec to a file 
 
