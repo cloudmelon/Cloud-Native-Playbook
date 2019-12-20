@@ -99,13 +99,13 @@ Sort by capacity :
    
  By default as soon as the command is run, the resource will be created. If you simply want to test your command, use the following :
  
-   --dry-run 
+    --dry-run 
    
 as option. This will not create the resource, instead, tell you weather the resource can be created and if your command is right.
    
 Another useful parameter is :
 
-   -w 
+    -w 
 
 Usage like when you query a pod or a job, it will make your shell stop by. The advange is after you use kubectl utility to deploy a pod, in real-life, you'll still need to wait for a few secs or even more until your pods will be up and running, this parameter is to help you don't need to check it again and again. 
 
