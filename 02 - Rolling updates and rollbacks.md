@@ -1,4 +1,4 @@
-# Playbook Part 2: Deploying an Application, Rolling Updates, and Rollbacks
+# Playbook Part 2: Deploying an Application, Rolling Updates, and Rollback
 
 This section we're going to talk a little bit about how to gradually roll out new versions using rolling updates and how to roll back in the event of a problem.  
 
@@ -135,9 +135,9 @@ Or
 **--record** flag records informaiton about the updates so that it can be rolled back later. 
 
 
-## Play 3 : Rollbacks
+## Play 3 : Rollback
 
-**Rollbacks** allow us to revert to a previsou state. For example, if a rolling update breaks someting, we can quickly recover by using a rollback. 
+**Rollback** allow us to revert to a previsou state. For example, if a rolling update breaks someting, we can quickly recover by using a rollback. 
 
 Or simply using : 
 
