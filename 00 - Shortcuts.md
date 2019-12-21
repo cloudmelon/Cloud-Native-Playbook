@@ -69,9 +69,14 @@ is equal to :
 
      k get deploy
 
+Get custom resources 
 
+    k get crd
 
-### Play 2. Add parametters ( Please use them in general context, don't limite yourself by pods or nodes )
+### Play 2. Add parameters 
+
+Please use them in general context, don't limite yourself by pods or nodes :)
+
 In all namespaces : 
 
     --all-namespaces  
