@@ -44,9 +44,13 @@ is equal to :
   
     k get no
 
-Get everything : 
+Get everything in default namespace: 
 
     kubectl get all 
+
+Get everything in all namespaces :
+
+    k get all --all-namespaces
 
 List all the events in the current namespace : 
 
