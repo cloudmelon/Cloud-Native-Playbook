@@ -73,6 +73,18 @@ is equal to :
 
      k get deploy
 
+Get endpoints :
+
+     k get endpoint
+    
+is equal to :
+
+    k get ep
+    
+To refer a specific endpoint, please check :
+
+    k get ep -n yournamespace
+
 Get custom resources 
 
     k get crd
