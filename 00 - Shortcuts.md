@@ -282,3 +282,5 @@ In the case it starts with a dictionary ( you might be more confortable to calle
 About conditional query : 
 
     $.status.containerStatuses[?(@.name == 'redis-container')].restartCount
+
+
