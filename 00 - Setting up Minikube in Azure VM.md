@@ -40,8 +40,14 @@ Add Minikube to your path
 
     minikube start --vm-driver=virtualbox
 
+While starting the minikube, you can see an output similar to the following :
+
+    <img src="screenshots/Minikubestart.PNG" alt="Minikubestart" width="800px"/>
+
 You can use the following command to check if Minikube works well :
 
      minikube status
 
-## Check Minikube
+You can expect an output similar to the following :
+
+    <img src="screenshots/minikubestatus.PNG" alt="Minikubestatus" width="800px"/>
