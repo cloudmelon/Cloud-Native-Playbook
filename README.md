@@ -35,6 +35,10 @@ By cloudmelon
 - AKS Public roadmap: http://aka.ms/aks/roadmap
 - AKS Known-issues: https://aka.ms/aks/knownissues
 
+## Interested in deploying Master-Slave architecture clustering solution on Azure ?
+
+Please check it out : 
+https://azure.microsoft.com/en-us/resources/templates/201-vmss-master-slave-customscript/
 
 ## More details on my blog : 
 
