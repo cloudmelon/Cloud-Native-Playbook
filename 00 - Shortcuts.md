@@ -150,6 +150,21 @@ Delete all pods in one of namespaces
 
     k delete pods --all -n melonspace
 
+Or 
+
+    k delete pods -n melonspace --all --grace-period=35
+
+About grace period is when a user requests deletion of a Pod, the system records **the intended grace period before the Pod is allowed to be forcefully killed**, and a TERM signal is sent to the main process in each container. Once the grace period has expired, the KILL signal is sent to those processes, and the Pod is then deleted from the API server. If the Kubelet or the container manager is restarted while waiting for processes to terminate, the termination will be retried with the full grace period.
+
+**Force deletion of a Pod** is defined as deletion of a Pod from the cluster state and etcd immediately. When a force deletion is performed, the API server **does not** wait for confirmation from the kubelet that the Pod has been terminated on the node it was running on. 
+
+By default, all deletes are graceful **within 30 seconds**. The kubectl delete command supports the --grace-period=<seconds> option which allows a user to **override** the default and specify their own value.
+
+You must specify an additional flag --force along with --grace-period=0 in order to perform force deletions( as follows ).
+
+  k delete pods -n melonspace --all --grace-period=0 --force
+
+
 
 ### Play 6. Playing with Json Path
 
