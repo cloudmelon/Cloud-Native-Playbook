@@ -15,6 +15,10 @@ This repostitory recap all useful kubectl commands and explainations for core co
 
 By cloudmelon
 
+## Set up K8S with Minikube 
+
+You can follow [my article : Playbook Before Part 0 : Minikube setting up in Azure VM ](https://github.com/cloudmelon/melonkube/blob/master/How%20to%20deploy%20K8S%20with%20Minikube%20in%20Azure%20VM.md) article to know about how to install Kubernetes with minikube on a single VM sits in Microsoft Azure.
+
 
 ## Kubernetes Useful references : 
 
