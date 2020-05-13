@@ -1,4 +1,4 @@
-# Playbook Before Part 0 :  Minikube setting up in Azure VM
+# Playbook Before Part 0 :  How to USE Minikube setting up in Azure VM
 
 ##  Prerequsities
 

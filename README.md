@@ -19,6 +19,9 @@ By cloudmelon
 
 You can follow [my article : Playbook Before Part 0 : Minikube setting up in Azure VM ](https://github.com/cloudmelon/melonkube/blob/master/How%20to%20deploy%20K8S%20with%20Minikube%20in%20Azure%20VM.md) article to know about how to install Kubernetes with minikube on a single VM sits in Microsoft Azure.
 
+Find [the article : Playbook Before Part 0 : How to deploy NGINX Ingress in Minikube]https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/) article to know about how to install Kubernetes with minikube on a single VM sits in Microsoft Azure.
+
+## 
 
 ## Kubernetes Useful references : 
 
