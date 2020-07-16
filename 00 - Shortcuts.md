@@ -130,6 +130,10 @@ Another useful parameter is :
 
 Usage like when you query a pod or a job, it will make your shell stop by. The advange is after you use kubectl utility to deploy a pod, in real-life, you'll still need to wait for a few secs or even more until your pods will be up and running, this parameter is to help you don't need to check it again and again. 
 
+To apply a bunch of definitions :
+
+   kubectl apply -f <path to your folder & folder name>
+
 ### Play 3. Write spec to a file 
 
 Get pod spec to a folder / file location : 
