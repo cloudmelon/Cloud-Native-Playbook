@@ -2,7 +2,8 @@
 
 This repository contains the scripts that you can use to deploy a Azure Kubernetes Service (AKS) private cluster with advanced networking ( CNI ). 
 
-This repository contains 3 bash scripts : 
+This repository contains 2 bash scripts : 
+
 - **deploy-private-aks.sh** : You can use it to deploy private AKS cluster with private endpoint, it fits the use case that you need to deploy AKS private cluster.
 
 - **deploy-private-aks-udr.sh** : You can use it to deploy private AKS cluster with private endpoint, it fits the use case that you need to deploy AKS private cluster and limit egress traffic with UDR ( User-defined Routes ). 
