@@ -1,4 +1,4 @@
-# Ultimate Kubernetes Playbook
+# Ultimate Kubernetes Playbook in 2024
 
 This repostitory recap all useful kubectl commands and explainations for core concepts and API primitives of Kubernetes. 
 
@@ -15,7 +15,14 @@ This repostitory recap all useful kubectl commands and explainations for core co
 
 By cloudmelon
 
-## Set up K8S with Minikube 
+## Playground 
+
+
+
+## Set up a local Kubernetes Cluster
+
+
+### Set up K8S with Minikube 
 
 You can follow [my article : Playbook Before Part 0 : Minikube setting up in Azure VM ](https://github.com/cloudmelon/melonkube/blob/master/How%20to%20deploy%20K8S%20with%20Minikube%20in%20Azure%20VM.md) article to know about how to install Kubernetes with minikube on a single VM sits in Microsoft Azure.
 
@@ -145,6 +152,6 @@ https://azure.microsoft.com/en-us/resources/templates/201-vmss-master-slave-cust
 
 ## More details on my blog : 
 
-Please go to my blog cloud-melon.com to get more details about how to implement this solution and more about Microsoft Azure ( ref link : https://cloud-melon.com )
+Please go to my blog cloud-melon.com to get more details about how to implement this solution and more about Microsoft Azure ( ref link : https://cloudmelonvision.com )
 
 Feel free to reach out to my twitter **@MelonyQ** for more details ( https://twitter.com/MelonyQ ). 
