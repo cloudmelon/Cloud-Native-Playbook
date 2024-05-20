@@ -16,7 +16,7 @@ This repository contains 2 bash scripts :
 1. Download the script on the location that you are planning to use for the deployment
 
 ``` bash
-curl --output deploy-private-aks.sh https://raw.githubusercontent.com/cloudmelon/melonkube/azure-kubernetes-service/private-aks/scripts/deploy-private-aks.sh
+curl --output deploy-private-aks.sh https://raw.githubusercontent.com/cloudmelon/Cloud-Native-Playbook/platform-ops/azure-kubernetes-service/private-aks/scripts/deploy-private-aks.sh
 ```
 
 2. Make the script executable
@@ -36,7 +36,7 @@ sudo ./deploy-private-aks.sh
 1. Download the script on the location that you are planning to use for the deployment
 
 ``` bash
-curl --output deploy-private-aks-udr.sh https://raw.githubusercontent.com/cloudmelon/melonkube/azure-kubernetes-service/private-aks/scripts/deploy-private-aks-udr.sh
+curl --output deploy-private-aks-udr.sh https://raw.githubusercontent.com/cloudmelon/Cloud-Native-Playbook/platform-ops/azure-kubernetes-service/private-aks/scripts/deploy-private-aks-udr.sh
 ```
 
 2. Make the script executable

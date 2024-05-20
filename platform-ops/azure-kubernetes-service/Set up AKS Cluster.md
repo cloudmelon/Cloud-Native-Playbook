@@ -17,7 +17,7 @@ This repository contains 2 bash scripts :
 1. Download the script on the location that you are planning to use for the deployment
 
 ``` bash
-curl --output deploy-cni-aks.sh https://raw.githubusercontent.com/cloudmelon/melonkube/azure-kubernetes-service/platform-ops/deploy-cni-aks.sh
+curl --output deploy-cni-aks.sh https://raw.githubusercontent.com/cloudmelon/Cloud-Native-Playbook/platform-ops/azure-kubernetes-service/deploy-cni-aks.sh
 ```
 
 2. Make the script executable
@@ -37,7 +37,7 @@ sudo ./deploy-cni-aks.sh
 1. Download the script on the location that you are planning to use for the deployment
 
 ``` bash
-curl --output deploy-kubenet-aks.sh https://raw.githubusercontent.com/cloudmelon/melonkube/azure-kubernetes-service/platform-ops/scripts/deploy-kubenet-aks.sh
+curl --output deploy-kubenet-aks.sh https://raw.githubusercontent.com/cloudmelon/Cloud-Native-Playbook/platform-ops/azure-kubernetes-service/scripts/deploy-kubenet-aks.sh
 ```
 
 2. Make the script executable
@@ -51,5 +51,3 @@ chmod +x deploy-kubenet-aks.sh
 ``` bash
 sudo ./deploy-kubenet-aks.sh
 ```
-
-

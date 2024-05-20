@@ -1,4 +1,19 @@
-# Ultimate Kubernetes Playbook in 2024
+<h1 align="center">Cloud-Native-Playbook</h1>
+<p align="center"><i>A collection of cloud-native technologies learning resources from cloudmelon</i></p>
+<div align="center">
+  <a href="https://github.com/cloudmelon/Cloud-Native-Playbook/stargazers"><img src="https://img.shields.io/github/stars/cloudmelon/Cloud-Native-Playbook" alt="Stars Badge"/></a>
+<a href="https://github.com/cloudmelon/Cloud-Native-Playbook/network/members"><img src="https://img.shields.io/github/forks/cloudmelon/Cloud-Native-Playbook" alt="Forks Badge"/></a>
+<a href="https://github.com/cloudmelon/Cloud-Native-Playbook/pulls"><img src="https://img.shields.io/github/issues-pr/cloudmelon/Cloud-Native-Playbook" alt="Pull Requests Badge"/></a>
+<a href="https://github.com/cloudmelon/Cloud-Native-Playbook/issues"><img src="https://img.shields.io/github/issues/cloudmelon/Cloud-Native-Playbook" alt="Issues Badge"/></a>
+<a href="https://github.com/cloudmelon/Cloud-Native-Playbook/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/cloudmelon/Cloud-Native-Playbook?color=2b9348"></a>
+<a href="https://github.com/cloudmelon/Cloud-Native-Playbook/blob/main/LICENSE"><img src="https://img.shields.io/github/license/cloudmelon/Cloud-Native-Playbook?color=2b9348" alt="License Badge"/></a>
+</div>
+<br>
+<p align="center"><i>Loved the project? Please visit CloudMelon's <a href="https://github.com/cloudmelon">Github profile</a></i></p>
+<br>
+
+
+# Ultimate Kubernetes Playbook
 
 This repostitory recap all useful kubectl commands and explainations for core concepts and API primitives of Kubernetes. 
 
@@ -27,103 +42,6 @@ By cloudmelon
 You can follow [my article : Playbook Before Part 0 : Minikube setting up in Azure VM ](https://github.com/cloudmelon/melonkube/blob/master/How%20to%20deploy%20K8S%20with%20Minikube%20in%20Azure%20VM.md) article to know about how to install Kubernetes with minikube on a single VM sits in Microsoft Azure.
 
 Find [the article : Playbook Before Part 0 : How to deploy NGINX Ingress in Minikube]https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/) article to know about how to install Kubernetes with minikube on a single VM sits in Microsoft Azure.
-
-## Set up Azure Kubernetes service 
-This repository contains 2 bash scripts : 
-- **deploy-cni-aks.sh** : You can use it to deploy AKS cluster using CNI networking, it fits the use case that you need to deploy AKS cluster with CNI networking plugin for integration with existing virtual networks in Azure, and this network model allows greater separation of resources and controls in an enterprise environment.
-
-- **deploy-kubenet-aks.sh** : You can use it to deploy AKS cluster using kubenet networking, it fits the use case that you need to deploy AKS cluster with kubenet networking. Kubenet is a basic network plugin, on Linux only. AKS cluster by default is on kubenet networking, after provisioning it, it also creates an Azure virtual network and a subnet, where your nodes get an IP address from the subnet and all pods receive an IP address from a logically different address space to the subnet of the nodes. 
-
-
-### deploy-cni-aks.sh
-
-1. Download the script on the location that you are planning to use for the deployment
-
-``` bash
-curl --output deploy-cni-aks.sh https://raw.githubusercontent.com/cloudmelon/melonkube/azure-kubernetes-service/platform-ops/deploy-cni-aks.sh
-```
-
-2. Make the script executable
-
-``` bash
-chmod +x deploy-cni-aks.sh
-```
-
-3. Run the script (make sure you are running with sudo)
-
-``` bash
-sudo ./deploy-cni-aks.sh
-```
-
-### deploy-kubenet-aks.sh
-
-1. Download the script on the location that you are planning to use for the deployment
-
-``` bash
-curl --output deploy-kubenet-aks.sh https://raw.githubusercontent.com/cloudmelon/melonkube/azure-kubernetes-service/platform-ops/scripts/deploy-kubenet-aks.sh
-```
-
-2. Make the script executable
-
-``` bash
-chmod +x deploy-kubenet-aks.sh
-```
-
-3. Run the script (make sure you are running with sudo)
-
-``` bash
-sudo ./deploy-kubenet-aks.sh
-```
-
-## Set up a private Azure Kubernetes service 
-
-This repository contains 2 bash scripts : 
-
-- **deploy-private-aks.sh** : You can use it to deploy private AKS cluster with private endpoint, it fits the use case that you need to deploy AKS private cluster.
-
-- **deploy-private-aks-udr.sh** : You can use it to deploy private AKS cluster with private endpoint, it fits the use case that you need to deploy AKS private cluster and limit egress traffic with UDR ( User-defined Routes ). 
-
-
-### deploy-private-aks.sh
-
-1. Download the script on the location that you are planning to use for the deployment
-
-``` bash
-curl --output deploy-private-aks.sh https://raw.githubusercontent.com/cloudmelon/melonkube/azure-kubernetes-service/private-aks/scripts/deploy-private-aks.sh
-```
-
-2. Make the script executable
-
-``` bash
-chmod +x deploy-private-aks.sh
-```
-
-3. Run the script (make sure you are running with sudo)
-
-``` bash
-sudo ./deploy-private-aks.sh
-```
-
-### deploy-private-aks-udr.sh
-
-1. Download the script on the location that you are planning to use for the deployment
-
-``` bash
-curl --output deploy-private-aks-udr.sh https://raw.githubusercontent.com/cloudmelon/melonkube/azure-kubernetes-service/private-aks/scripts/deploy-private-aks-udr.sh
-```
-
-2. Make the script executable
-
-``` bash
-chmod +x deploy-private-aks-udr.sh
-```
-
-3. Run the script (make sure you are running with sudo)
-
-``` bash
-sudo ./deploy-private-aks-udr.sh
-```
-
 
 
 ## Kubernetes Useful references : 
@@ -155,3 +73,26 @@ https://azure.microsoft.com/en-us/resources/templates/201-vmss-master-slave-cust
 Please go to my blog cloud-melon.com to get more details about how to implement this solution and more about Microsoft Azure ( ref link : https://cloudmelonvision.com )
 
 Feel free to reach out to my twitter **@MelonyQ** for more details ( https://twitter.com/MelonyQ ). 
+
+# Authors
+
+Contributors names and contacts
+
+- Github profile [here](https://github.com/cloudmelon)
+- Twitter [@MelonyQ](https://twitter.com/melonyq)
+- Blog [CloudMelon Vis](https://cloudmelonvision.com)
+- Youtube[ CloudMelon Vis](https://www.youtube.com/@CloudMelonVis?sub_confirmation=1)
+
+# Contribute
+
+Contributions are always welcome! Please create a PR to add Github Profile.
+
+## License
+
+This project is licensed under [MIT](https://opensource.org/licenses/MIT) license.
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+[![Star History Chart](https://api.star-history.com/svg?repos=cloudmelon/Cloud-Native-Playbook.git,cloudmelon/Cloud-Native-Playbook&type=Date)](https://star-history.com/#cloudmelon/Cloud-Native-Playbook.git&cloudmelon/Cloud-Native-Playbook&Date)
