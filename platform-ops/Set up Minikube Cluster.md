@@ -6,6 +6,12 @@
 
 ##  Prerequsities
 
+### Set up K8S with Minikube 
+
+You can follow [my article : Playbook Before Part 0 : Minikube setting up in Azure VM ](https://github.com/cloudmelon/Cloud-Native-Playbook/blob/master/platform-ops/Set%20up%20Minikube%20Cluster.md) article to know about how to install Kubernetes with minikube on a single VM sits in Microsoft Azure.
+
+Find [the article : Playbook Before Part 0 : How to deploy NGINX Ingress in Minikube](https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/) article to know about how to install Kubernetes with minikube on a single VM sits in Microsoft Azure.
+
 In your Azure VM OR AWS EC2 instance :
 
 Update current packages of the system to the latest version.

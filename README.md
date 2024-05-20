@@ -1,4 +1,4 @@
-<h1 align="center">Cloud-Native-Playbook</h1>
+<h1 align="center">Cloud Native Playbook</h1>
 <p align="center"><i>A collection of cloud-native technologies learning resources from cloudmelon</i></p>
 <div align="center">
   <a href="https://github.com/cloudmelon/Cloud-Native-Playbook/stargazers"><img src="https://img.shields.io/github/stars/cloudmelon/Cloud-Native-Playbook" alt="Stars Badge"/></a>
@@ -17,40 +17,34 @@
 
 This repostitory recap all useful kubectl commands and explainations for core concepts and API primitives of Kubernetes. 
 
-- [00 - Shortcuts](https://github.com/cloudmelon/melonkube/blob/master/00%20-%20Shortcuts.md)
-- [01 - Pod design](https://github.com/cloudmelon/melonkube/blob/master/01%20-%20Pod%20design.md)
-- [02 - Rolling updates & rollbacks](https://github.com/cloudmelon/melonkube/blob/master/02%20-%20Rolling%20updates%20and%20rollbacks.md)
-- [03 - Networking](https://github.com/cloudmelon/melonkube/blob/master/03%20-%20Networking.md)
-- [04 - ETCD](https://github.com/cloudmelon/melonkube/blob/master/04%20-%20ETCD.md)
-- [05 - Volumes](https://github.com/cloudmelon/melonkube/blob/master/05%20-%20Volumes.md)
-- [06 - Observability](https://github.com/cloudmelon/melonkube/blob/master/06%20-%20Observability.md)
-- [07 - ConfigMap](https://github.com/cloudmelon/melonkube/blob/master/07%20-%20ConfigMap.md)
-- [08 - Services](https://github.com/cloudmelon/melonkube/blob/master/08%20-%20Services.md)
-- [09 - Security](https://github.com/cloudmelon/melonkube/blob/master/09%20-%20Security.md)
-
-By cloudmelon
+| Chapters | Description |
+| --- | --- |
+| [00 - Shortcuts](https://github.com/cloudmelon/Cloud-Native-Playbook/blob/master/00%20-%20Shortcuts.md)| Kubectl commands shortcuts|
+| [01 - Pod design](https://github.com/cloudmelon/Cloud-Native-Playbook/blob/master/01%20-%20Pod%20design.md) | Pod Design |
+| [02 - Rolling updates & rollbacks](https://github.com/cloudmelon/Cloud-Native-Playbook/blob/master/02%20-%20Rolling%20updates%20and%20rollbacks.md) | Rolling updates & rollbacks |
+| [03 - Networking](https://github.com/cloudmelon/Cloud-Native-Playbook/blob/master/03%20-%20Networking.md) | Kubernetes Networking |
+| [04 - ETCD](https://github.com/cloudmelon/Cloud-Native-Playbook/blob/master/05%20-%20Volumes.md) | ETCD |
+| [05 - Volumes](https://github.com/cloudmelon/Cloud-Native-Playbook/blob/master/05%20-%20Volumes.md) | Kubernetes Storage |
+| [06 - Observability](https://github.com/cloudmelon/Cloud-Native-Playbook/blob/master/06%20-%20Observability.md) | Kubernetes Observability |
+| [07 - ConfigMap](https://github.com/cloudmelon/Cloud-Native-Playbook/blob/master/07%20-%20ConfigMap.md) | ConfigMap |
+| [08 - Services](https://github.com/cloudmelon/Cloud-Native-Playbook/blob/master/08%20-%20Services.md) | Services |
+| [09 - Security](https://github.com/cloudmelon/Cloud-Native-Playbook/blob/master/09%20-%20Security.md) | Security |
 
 ## Playground 
 
-
+Learn how to get started with Kubernetes in 2024, check out [this blog post](https://cloudmelonvision.com/if-i-were-about-to-get-started-on-kubernetes-in-2024/)
 
 ## Set up a local Kubernetes Cluster
-
-
-### Set up K8S with Minikube 
-
-You can follow [my article : Playbook Before Part 0 : Minikube setting up in Azure VM ](https://github.com/cloudmelon/melonkube/blob/master/How%20to%20deploy%20K8S%20with%20Minikube%20in%20Azure%20VM.md) article to know about how to install Kubernetes with minikube on a single VM sits in Microsoft Azure.
-
-Find [the article : Playbook Before Part 0 : How to deploy NGINX Ingress in Minikube]https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/) article to know about how to install Kubernetes with minikube on a single VM sits in Microsoft Azure.
+| Chapters | Description |
+| --- | --- |
+| [Setup Minikube Cluster](https://github.com/cloudmelon/Cloud-Native-Playbook/blob/master/platform-ops/Set%20up%20Minikube%20Cluster.md)| End-to-End how to Setup Minikube Cluster|
+| [Set up AKS cluster](https://github.com/cloudmelon/Cloud-Native-Playbook/blob/master/platform-ops/azure-kubernetes-service/Set%20up%20AKS%20Cluster.md) | End-to-End how to Set up AKS cluster |
 
 
 ## Kubernetes Useful references : 
-
-- Kubernetes By Example : 
-  http://kubernetesbyexample.com/  
   
-- Mastering Kubernetes By doing AKS Workshop : 
-  https://aksworkshop.io/
+- Mastering Kubernetes By doing AKS DevSecOps Workshop : 
+  https://azure.github.io/AKS-DevSecOps-Workshop/
 
 - Kubernetes the hard way on Azure : 
   https://github.com/ivanfioravanti/kubernetes-the-hard-way-on-azure/tree/master/docs
@@ -95,4 +89,4 @@ This project is licensed under [MIT](https://opensource.org/licenses/MIT) licens
 
 Give a ⭐️ if this project helped you!
 
-[![Star History Chart](https://api.star-history.com/svg?repos=cloudmelon/Cloud-Native-Playbook.git,cloudmelon/Cloud-Native-Playbook&type=Date)](https://star-history.com/#cloudmelon/Cloud-Native-Playbook.git&cloudmelon/Cloud-Native-Playbook&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=cloudmelon/Cloud-Native-Playbook&type=Date)](https://star-history.com/#cloudmelon/Cloud-Native-Playbook&Date)
