@@ -50,6 +50,23 @@ Learn how to get started with Kubernetes in 2024, check out [this blog post](htt
   https://github.com/ivanfioravanti/kubernetes-the-hard-way-on-azure/tree/master/docs
 
 
+## Cloud-Native certification
+
+There are 5 major cloud-native certifications, and all 5 certifications certified make you eligible for [Cloud Native Computing Foundation(CNCF)](https://www.cncf.io/)'s [Kubestronaut Program](https://www.cncf.io/training/kubestronaut/) under the condition that the candidate successfully maintains the following 5 certifications in goods tanding at the same time : 
+•	[Certified Kubernetes Administrator (CKA)](https://www.cncf.io/training/certification/cka/)
+•	[Certified Kubernetes Application Developer (CKAD)](https://www.cncf.io/training/certification/ckad/)
+•	[Certified Kubernetes Security Specialist (CKS)](https://www.cncf.io/training/certification/cks/)
+•	[Kubernetes and Cloud Native Associate (KCNA)](https://www.cncf.io/training/certification/kcna/)
+•	[Kubernetes and Cloud Native Security Associate (KCSA)](https://www.cncf.io/training/certification/kcsa/)
+
+Additional Kubernetes ecosystem : 
+•	Prometheus Certified Associate (PCA)
+•	Istio Certified Associate (ICA) 
+•	Cilium Certified Associate (CCA)
+•	Certified Argo Project Associate (CAPA)
+•	GitOps Certified Associate (CGOA)
+
+
 ## Azure Kubernetes services ( AKS ) useful references : 
 
 - AKS Current preview features: https://aka.ms/aks/previewfeatures
