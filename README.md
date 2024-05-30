@@ -60,11 +60,11 @@ There are 5 major cloud-native certifications, and all 5 certifications certifie
 •	[Kubernetes and Cloud Native Security Associate (KCSA)](https://www.cncf.io/training/certification/kcsa/)
 
 Additional Kubernetes ecosystem : 
-•	Prometheus Certified Associate (PCA)
-•	Istio Certified Associate (ICA) 
-•	Cilium Certified Associate (CCA)
-•	Certified Argo Project Associate (CAPA)
-•	GitOps Certified Associate (CGOA)
+•	[Prometheus Certified Associate (PCA)](https://www.cncf.io/training/certification/pca/)
+•	[Istio Certified Associate (ICA)](https://www.cncf.io/training/certification/ica/)
+•	[Cilium Certified Associate (CCA)](https://www.cncf.io/training/certification/cca/)
+•	[Certified Argo Project Associate (CAPA)](https://www.cncf.io/training/certification/capa/)
+•	[GitOps Certified Associate (CGOA)](https://www.cncf.io/training/certification/cgoa/)
 
 
 ## Azure Kubernetes services ( AKS ) useful references : 
