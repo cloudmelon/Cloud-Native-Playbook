@@ -185,8 +185,8 @@ https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/
 
 With Ingress object and define a set of rules. An Ingress Controller will be able to do things like the following : 
 - Route users to a simple application
-- URL-based routing such as different pages for the same web application ( example : www.cloud-melon.com/contacts and www.cloud-melon.com/aboutme )
-- Based on domain name itself to route specific users ( such as blog.cloud-melon.com and code.cloud-melon.com )
+- URL-based routing such as different pages for the same web application ( example : www.cvisiona.com/contacts and www.cvisiona.com/aboutme )
+- Based on domain name itself to route specific users ( such as blog.cvisiona.com and code.cvisiona.com )
 
 All those will fully depend on your backend configuration of the ingress controller. 
 
