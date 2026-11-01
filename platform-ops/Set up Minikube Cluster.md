@@ -67,4 +67,4 @@ kubectl delete deployment hello
 minikube stop
 ```
 
-`minikube delete` removes the local cluster and its data. The original [2024 getting-started post](https://cloudmelonvision.com/if-i-were-about-to-get-started-on-kubernetes-in-2024/) remains a historical reference.
+`minikube delete` removes the local cluster and its data. The original [2024 getting-started post](https://cvisiona.com/if-i-were-about-to-get-started-on-kubernetes-in-2026/) remains a historical reference.

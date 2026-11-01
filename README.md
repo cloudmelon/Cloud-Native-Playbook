@@ -34,7 +34,7 @@ Last reviewed: **9 October 2026**. See the [maintenance review](REVIEW.md) for c
 
 ## Playground 
 
-Historical 2024 introduction: [this blog post](https://cloudmelonvision.com/if-i-were-about-to-get-started-on-kubernetes-in-2024/)
+Historical 2024 introduction: [this blog post](https://cvisiona.com/if-i-were-about-to-get-started-on-kubernetes-in-2026/)
 
 ## Set up a local Kubernetes Cluster
 | Chapters | Description |
@@ -88,7 +88,7 @@ Contributors names and contacts
 
 - Github profile [here](https://github.com/cloudmelon)
 - Twitter [@MelonyQ](https://twitter.com/melonyq)
-- Blog [CloudMelon Vis](https://cloudmelonvision.com)
+- Blog [CVisiona](https://cvisiona.com)
 - Youtube[ CloudMelon Vis](https://www.youtube.com/@CloudMelonVis?sub_confirmation=1)
 
 # Contribute

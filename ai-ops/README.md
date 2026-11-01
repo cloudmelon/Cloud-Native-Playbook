@@ -26,7 +26,7 @@ Coming soon
 
  
 # Project References
-To learn more about AI, check out this free crash course in 12 mins here [What You REALLY Need To Know About AI ](https://youtu.be/aW3GmbCnWW4) blog post [Artificial Intelligence (AI) made easy for beginners](https://cloudmelonvision.com/artificial-intelligence-ai-made-easy-for-beginners/)
+To learn more about AI, check out this free crash course in 12 mins here [What You REALLY Need To Know About AI ](https://youtu.be/aW3GmbCnWW4) blog post [Artificial Intelligence (AI) made easy for beginners](https://cvisiona.com/ai-made-easy-for-absolute-beginners/)
 To learn more about AI infrastructure, check out this video to get a glimpse in 11 minutes [How Are Large GenAI Models Trained? | HPC + AI = ? Simply explained](https://youtu.be/7esbDFIuG8c).
 
 # Related projects in the `Playbook by cloudmelon ` 
